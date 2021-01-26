@@ -33,27 +33,34 @@
                 <tbody>
                     <?php
                     $no = 1;
-                    foreach ($kunjungan as $kun) { ?>
-                        <tr>
-                            <td class="text-center"><?php echo $no++ ?></td>
-                            <td class="text-center"><?php echo $kun->no_ktp ?></td>
-                            <td class="text-center"><?php echo $kun->nama_visitor ?></td>
-                            <td class="text-center"><?php echo $kun->alamat ?></td>
-                            <td class="text-center"><?php echo $kun->nama_perusahaan ?></td>
-                            <td class="text-center"><?php echo $kun->no_kendaraan ?></td>
-                            <td class="text-center"><?php echo $kun->bertemu ?></td>
-                            <td class="text-center"><?php echo $kun->kepentingan ?></td>
-                            <td class="text-center"><?php echo $kun->jam_masuk ?></td>
-                            <td class="text-center"><?php echo $kun->jam_keluar ?></td>
-                            <td class="text-center">
-                                <a class="text-center"><?php echo anchor('kunjungan/edit/' . $kun->id_kunjungan, '<div class="btn btn-success btn-sm" style="margin-bottom: 5px;"><i class="fas fa-edit"></i></div>') ?></a>
-                                <a onclick="deleteConfirm('<?= base_url('kunjungan/delete/' . $kun->id_kunjungan) ?>')" href="#!" style="margin-bottom: 5px;" class="btn btn-danger btn-sm btn-icon-split" data-toggle="tooltip" data-placement="top" title="Delete">
-                                    <span class="icon text-white-5">
-                                        <i class="fas fa-trash"></i>
-                                    </span></a>
-                            </td>
-                        </tr>
-                    <?php } ?>
+                    foreach ($kunjungan as $kun) {
+                    ?>
+                    <tr>
+                        <td class="text-center"><?= $no++ ?></td>
+                        <td class="text-center"><?= $kun->no_ktp  ?></td>
+                        <td class="text-center"><?= $kun->nama_visitor ?></td>
+                        <td class="text-center"><?= $kun->alamat  ?></td>
+                        <td class="text-center"><?= $kun->nama_perusahaan  ?></td>
+                        <td class="text-center"><?= $kun->no_kendaraan  ?></td>
+                        <td class="text-center"><?= $kun->bertemu ?></td>
+                        <td class="text-center"><?= $kun->kepentingan  ?></td>
+                        <td class="text-center"><?= $kun->jam_masuk  ?></td>
+                        <td class="text-center"><?= $kun->jam_keluar  ?></td>
+                        <td class="text-center">
+                            <a class="text-center">
+                                <div class="btn btn-success btn-sm" style="margin-bottom: 5px;"><i
+                                        class="fas fa-edit"></i></div>
+                            </a>
+                            <a onclick="deleteConfirm('<?= base_url('kunjungan/delete/') ?>" href="#!"
+                                style="margin-bottom: 5px;" class="btn btn-danger btn-sm btn-icon-split"
+                                data-toggle="tooltip" data-placement="top" title="Delete">
+                                <span class="icon text-white-5">
+                                    <i class="fas fa-trash"></i>
+                                </span></a>
+                        </td>
+                    </tr>
+                    <?php }
+                    ?>
                 </tbody>
             </table>
 

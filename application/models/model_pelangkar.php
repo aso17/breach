@@ -5,39 +5,25 @@ class Model_pelangkar extends CI_Model
     private $_table = "tb_pelangkar";
     public $id_pelangkar;
     public $nik_karyawan;
-    public $nama_karyawan;
-    public $departemen;
-    public $kriteria;
-    public $ket_pelanggaran;
-    public $waktu;
-    public $bukti;
-    public $status;
+    public $id_pelanggaran;
+
 
     public function rules()
     {
         return [
 
             [
-                'field' => 'nik_karyawan',
-                'label' => 'NIK',
+                'field' => 'nik',
+                'label' => 'nik',
                 'rules' => 'required'
             ],
 
-            [
-                'field' => 'nama_karyawan',
-                'label' => 'Nama Lengkap',
-                'rules' => 'required'
-            ],
+
+
 
             [
-                'field' => 'departemen',
-                'label' => 'Departemen',
-                'rules' => 'required'
-            ],
-
-            [
-                'field' => 'kriteria',
-                'label' => 'Kriteria Pelanggaran',
+                'field' => 'kategori',
+                'label' => 'Kategori Pelanggaran',
                 'rules' => 'required'
             ],
 
@@ -60,9 +46,10 @@ class Model_pelangkar extends CI_Model
     public function getAll()
     {
         $this->db->select('*');
-        $this->db->join('tb_dept', 'tb_dept.id_dept = tb_pelangkar.departemen', 'left');
-        $this->db->join('tb_kriteria', 'tb_kriteria.id_kriteria = tb_pelangkar.kriteria', 'left');
+
         $this->db->from($this->_table);
+        $this->db->join('tb_karyawan', 'tb_karyawan.nik_karyawan = tb_pelangkar.nik_karyawan', 'left');
+        $this->db->join('tb_pelanggaran', 'tb_pelanggaran.id_pelanggaran = tb_pelangkar.id_pelanggaran', 'left');
         $query = $this->db->get();
         return $query->result();
     }
@@ -73,31 +60,19 @@ class Model_pelangkar extends CI_Model
         return $this->db->get_where($this->_table, ["id_pelangkar" => $id])->row();
     }
 
-    public function save($post)
+    public function save($post, $id)
     {
-        $post = $this->input->post();
-        $file = $_FILES['bukti'];
-        if ($file) {
 
-            $config['upload_path']          = './assets/bukti/';
-            $config['allowed_types']        = 'jpg|png|jpeg|gif';
-            $config['max_size']             = '50000';
-            $this->load->library('upload', $config);
-            if ($this->upload->do_upload('bukti')) {
-                $bukti = $this->upload->data('file_name');
-            } else {
-                echo $this->upload->display_errors();
-            }
-        }
         $this->id_pelangkar = uniqid();
-        $this->nik_karyawan = $post['nik_karyawan'];
-        $this->nama_karyawan = $post['nama_karyawan'];
-        $this->departemen = $post['departemen'];
-        $this->kriteria = $post['kriteria'];
-        $this->ket_pelanggaran = $post['ket_pelanggaran'];
-        $this->waktu = $post['waktu'];
-        $this->bukti = $bukti;
-        $this->status = 'open';
+        $this->nik_karyawan = $post['nik'];
+        $this->id_pelanggaran = $id;
+
+        // $this->departemen = $post['departemen'];
+        // $this->kriteria = $post['kriteria'];
+        // $this->ket_pelanggaran = $post['ket_pelanggaran'];
+        // $this->waktu = $post['waktu'];
+        // $this->bukti = $bukti;
+        // $this->status = 'open';
         return $this->db->insert($this->_table, $this);
     }
 

@@ -16,6 +16,11 @@ class Model_visitor extends CI_Model
         return [
 
             [
+                'field' => 'no_visit',
+                'label' => 'No visitor',
+                'rules' => 'required'
+            ],
+            [
                 'field' => 'no_ktp',
                 'label' => 'No KTP',
                 'rules' => 'required'
@@ -41,11 +46,11 @@ class Model_visitor extends CI_Model
 
         ];
     }
-    public function getBy_ktp($id)
+    public function getBy_visit($id)
     {
         $this->db->select('*');
         $this->db->from('tb_visitor');
-        $this->db->where('tb_visitor.no_ktp', $id);
+        $this->db->where('tb_visitor.id_visitor', $id);
         $query = $this->db->get();
         return $query->row();
     }
@@ -62,7 +67,7 @@ class Model_visitor extends CI_Model
     public function save()
     {
         $post = $this->input->post();
-        $this->id_visitor = uniqid();
+        $this->id_visitor = $post['no_visit'];
         $this->no_ktp = $post['no_ktp'];
         $this->nama_visitor = $post['nama_visitor'];
         $this->alamat = $post['alamat'];

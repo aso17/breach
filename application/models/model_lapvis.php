@@ -44,7 +44,7 @@ class Model_lapvis extends CI_Model
     {
         $this->db->select('*');
         $this->db->join('tb_visitor', 'tb_visitor.id_visitor = tb_pelangvis.tamu', 'left');
-        $this->db->join('tb_kriteria', 'tb_kriteria.id_kriteria = tb_pelangvis.kriteria_pelanggaran', 'left');
+        //$this->db->join('tb_kriteria', 'tb_kriteria.id_kriteria = tb_pelangvis.kriteria_pelanggaran', 'left');
         $this->db->where('tb_pelangvis.waktu >=', $tanggalawal);
         $this->db->where('tb_pelangvis.waktu <=', $tanggalakhir);
         $this->db->from($this->_table);

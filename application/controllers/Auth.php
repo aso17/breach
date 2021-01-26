@@ -8,6 +8,13 @@ class auth extends CI_Controller
         $this->load->model('model_auth');
     }
 
+    public function index()
+    {
+        $this->load->view('templates/auth_header');
+        $this->load->view('auth/login');
+        $this->load->view('templates/auth_footer');
+    }
+
     public function login()
     {
         $this->form_validation->set_rules('username', 'Username', 'trim|required', ['required' => 'Username wajib diisi!']);

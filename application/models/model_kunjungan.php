@@ -5,10 +5,7 @@ class Model_kunjungan extends CI_Model
     private $_table = "tb_kunjungan";
     public $id_kunjungan;
     public $id_visitor;
-    public $no_ktp;
-    public $nama_visitor;
-    public $alamat;
-    public $nama_perusahaan;
+
     public $no_kendaraan;
     public $bertemu;
     public $kepentingan;
@@ -45,11 +42,11 @@ class Model_kunjungan extends CI_Model
             //     'label' => 'Nama Perusahaan',
             //     'rules' => 'required'
             // ],
-            [
-                'field' => 'id_visitor',
-                'label' => 'ID VISITOR',
-                'rules' => 'required'
-            ],
+            // [
+            //     'field' => 'id_visitor',
+            //     'label' => 'ID VISITOR',
+            //     'rules' => 'required'
+            // ],
 
             [
                 'field' => 'no_kendaraan',
@@ -102,13 +99,9 @@ class Model_kunjungan extends CI_Model
 
     public function save()
     {
-        $post = $this->input->post();
-        $this->id_kunjungan = uniqid();
-        $this->id_visitor = $post['id_visitor'];
-        $this->no_ktp = $post['no_ktp'];
-        $this->nama_visitor = $post['nama_visitor'];
-        $this->alamat = $post['alamat'];
-        $this->nama_perusahaan = $post['nama_perusahaan'];
+        $post = $this->input->post(null, TRUE);
+        $this->id_kunjungan = uniqid('kun');
+        $this->id_visitor = $post['novisit'];
         $this->no_kendaraan = $post['no_kendaraan'];
         $this->bertemu = $post['bertemu'];
         $this->kepentingan = $post['kepentingan'];
@@ -132,5 +125,13 @@ class Model_kunjungan extends CI_Model
     public function delete($id)
     {
         return $this->db->delete($this->_table, array("id_kunjungan" => $id));
+    }
+    public function get_join()
+    {
+        $this->db->select('*');
+        $this->db->from('tb_kunjungan');
+        $this->db->join('tb_visitor', 'tb_visitor.id_visitor=tb_kunjungan.id_visitor');
+        $query = $this->db->get()->result();
+        return $query;
     }
 }

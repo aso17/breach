@@ -8,7 +8,7 @@ class Pelangvis extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('model_pelangvis');
-		$this->load->model('model_kriteria');
+		//$this->load->model('model_kriteria');
 		$this->load->model('model_visitor');
 		// check_not_login();
 	}
