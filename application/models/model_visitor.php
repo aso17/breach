@@ -77,13 +77,24 @@ class Model_visitor extends CI_Model
 
     public function update($post)
     {
-        $post = $this->input->post();
-        $this->id_visitor = $post['id_visitor'];
-        $this->no_ktp = $post['no_ktp'];
-        $this->nama_visitor = $post['nama_visitor'];
-        $this->alamat = $post['alamat'];
-        $this->nama_perusahaan = $post['nama_perusahaan'];
-        return $this->db->update($this->_table, $this, array('id_visitor' => $post['id_visitor']));
+
+        $data = [
+            "id_visitor" => $post['no_visit'],
+            "no_ktp" => $post['no_ktp'],
+            "nama_visitor" => $post['nama_visitor'],
+            "alamat " => $post['alamat'],
+            "nama_perusahaan" => $post['nama_perusahaan']
+        ];
+        $this->db->set($data);
+        $this->db->where('id_visitor', $post['no_visit']);
+        $this->db->update($this->_table, $data);
+
+        //  = $post['id_visitor'];
+        // = $post['no_ktp'];
+        //  = $post['nama_visitor'];
+        //  = $post['alamat'];
+        //  = $post['nama_perusahaan'];
+        // return $this->db->update($this->_table, $this, array('id_visitor' => $post['id_visitor']));
     }
 
     public function delete($id)

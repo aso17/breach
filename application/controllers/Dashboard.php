@@ -12,10 +12,8 @@ class Dashboard extends CI_Controller
 
 	public function index()
 	{
-		$id = $this->session->userdata('id_user');
-		$data['user'] = $this->user_model->getById($id);
-
-
-		$this->template->load('shared/index', 'dashboard/dashboard', $data);
+		// $id = $this->session->userdata('id_user');
+		// $data['user'] = $this->user_model->getById($id);
+		$this->template->load('shared/index', 'dashboard/index');
 	}
 }

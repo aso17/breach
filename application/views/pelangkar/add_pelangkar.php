@@ -78,7 +78,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="waktu">Waktu</label>
-                                    <input type="date"
+                                    <input type="Datetime-local"
                                         class="form-control <?php echo form_error('waktu') ? 'is-invalid' : '' ?>"
                                         id="waktu" name="waktu" placeholder="waktu">
                                     <div class="invalid-feedback">

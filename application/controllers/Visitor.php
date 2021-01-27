@@ -37,30 +37,25 @@ class Visitor extends CI_Controller
 		}
 	}
 
-	public function edit($id = null)
+	public function edit($id)
 	{
-		if (!isset($id)) redirect('visitor');
-		$visitor = $this->model_visitor;
-		$validation = $this->form_validation;
-		$validation->set_rules($visitor->rules());
 
-		if ($this->form_validation->run()) {
-			$post = $this->input->post(null, TRUE);
-			$this->model_visitor->update($post);
-			if ($this->db->affected_rows() > 0) {
-				$this->session->set_flashdata('success', 'Visitor Berhasil Diupdate!');
-				redirect('visitor', 'refresh');
-			} else {
-				$this->session->set_flashdata('warning', 'Data Visitor Tidak Diupdate!');
-				redirect('visitor', 'refresh');
-			}
-		}
+
 		$data['visitor'] = $this->model_visitor->getById($id);
-		if (!$data['visitor']) {
-			$this->session->set_flashdata('error', 'Data Tidak Diupdate!');
+		$this->template->load('shared/index', 'visitor/edit_visitor', $data);
+	}
+	public function change()
+	{
+		$post = $this->input->post(null, true);
+
+		$this->model_visitor->update($post);
+		if ($this->db->affected_rows() > 0) {
+			$this->session->set_flashdata('success', 'Visitor Berhasil Diupdate!');
+			redirect('visitor', 'refresh');
+		} else {
+			$this->session->set_flashdata('warning', 'Data Visitor Tidak Diupdate!');
 			redirect('visitor', 'refresh');
 		}
-		$this->template->load('shared/index', 'visitor/edit_visitor', $data);
 	}
 	public function delete($id)
 	{

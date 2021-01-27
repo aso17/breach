@@ -15,14 +15,13 @@
 
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form method="post" action="">
+                        <form method="post" action="<?= base_url('visitor/change') ?>">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="id_visitor">Nomor Visitor</label>
-                                    <input type="text"
-                                        value="<?= $this->input->post('id_visitor') ? $this->input->post('id_visitor') : $visitor->id_visitor ?>"
+                                    <label for="no_visit">Nomor Visitor</label>
+                                    <input type="text" value="<?= $visitor->id_visitor ?>"
                                         class="form-control <?php echo form_error('id_visitor') ? 'is-invalid' : '' ?>"
-                                        id="id_visitor" name="id_visitor" placeholder="id_visitor">
+                                        id="no_visit" name="no_visit">
                                     <div class="invalid-feedback">
                                         <?php echo form_error('id_visitor') ?>
                                     </div>

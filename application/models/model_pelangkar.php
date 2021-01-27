@@ -59,20 +59,24 @@ class Model_pelangkar extends CI_Model
 
         return $this->db->get_where($this->_table, ["id_pelangkar" => $id])->row();
     }
-
+    public function  getbyid_join($id)
+    {
+        $this->db->select('*');
+        $this->db->from($this->_table);
+        $this->db->join('tb_pelanggaran', 'tb_pelanggaran.id_pelanggaran = tb_pelangkar.id_pelanggaran', 'left');
+        $this->db->join('tb_kategori', 'tb_kategori.id_kategori = tb_pelanggaran.id_kategori', 'left');
+        $this->db->join('tb_karyawan', 'tb_karyawan.nik_karyawan = tb_pelangkar.nik_karyawan', 'left');
+        $this->db->join('tb_posisi', 'tb_posisi.id_posisi = tb_karyawan.id_posisi', 'left');
+        $query = $this->db->where('tb_pelangkar.id_pelangkar', $id);
+        $query = $this->db->get();
+        return $query->row();
+    }
     public function save($post, $id)
     {
 
-        $this->id_pelangkar = uniqid();
+        $this->id_pelangkar = uniqid('pekar');
         $this->nik_karyawan = $post['nik'];
         $this->id_pelanggaran = $id;
-
-        // $this->departemen = $post['departemen'];
-        // $this->kriteria = $post['kriteria'];
-        // $this->ket_pelanggaran = $post['ket_pelanggaran'];
-        // $this->waktu = $post['waktu'];
-        // $this->bukti = $bukti;
-        // $this->status = 'open';
         return $this->db->insert($this->_table, $this);
     }
 

@@ -102,7 +102,7 @@ class Pelangkar extends CI_Controller
 	}
 	public function detail($id_pelangkar)
 	{
-		$data['pelangkar'] = $this->model_pelangkar->detail_kar($id_pelangkar);
+		$data['pelangkar'] = $this->model_pelangkar->getbyid_join($id_pelangkar);
 		$this->template->load('shared/index', 'pelangkar/detail_pelangkar', $data);
 	}
 	public function status_close($id)

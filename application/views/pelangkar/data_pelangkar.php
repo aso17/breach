@@ -4,7 +4,7 @@
       <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
           <h6 class="m-0 font-weight-bold text-primary ">DATA PELANGGARAN KARYAWAN</h6>
           <?php //if ($this->session->userdata('level') == 2) : 
-      ?>
+            ?>
           <div class="card-header">
               <a href="<?php echo base_url('pelangkar/add') ?>" class="btn btn-primary btn-icon-split btn-sm"
                   style="margin-bottom: 5px;">
@@ -14,7 +14,7 @@
                   <span class="font-weight-bold text">Tambah</span></a>
           </div>
           <?php //endif 
-      ?>
+            ?>
       </div>
       <div class="card-body">
           <div class="table-responsive">
@@ -34,22 +34,22 @@
                   </thead>
                   <tbody>
                       <?php
-            $no = 1;
-            foreach ($pelangkar as $kar) { ?>
+                        $no = 1;
+                        foreach ($pelangkar as $kar) { ?>
 
                       <tr>
                           <td class="text-center"><?php echo $no++ ?></td>
                           <td class="text-center"><?php echo $kar->nik_karyawan ?></td>
                           <td><?php echo $kar->nama_lengkap ?></td>
                           <td class="text-center"><?php echo $kar->departemen ?></td>
-                          <td class="text-center"><?= date('d-m-yy', strtotime($kar->waktu)); ?></td>
+                          <td class="text-center"><?= $kar->waktu ?></td>
                           <td class="text-center" width="100px">
                               <?php if ($kar->status == 'open') {
-                    echo '<a href="" class="badge badge-primary">Open</a>';
-                  } ?>
+                                        echo '<a href="" class="badge badge-primary">Open</a>';
+                                    } ?>
                               <?php if ($kar->status == 'close') {
-                    echo '<a href="" class="badge badge-success">Close</a>';
-                  } ?>
+                                        echo '<a href="" class="badge badge-success">Close</a>';
+                                    } ?>
                           </td>
                           <td class="text-center" width="100px">
                               <a class="btn btn-outline-warning btn-sm" data-toggle="modal"

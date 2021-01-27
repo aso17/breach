@@ -97,6 +97,16 @@ class Model_kunjungan extends CI_Model
         return $this->db->get_where($this->_table, ["id_kunjungan" => $id])->row();
     }
 
+    public function getByno_visit($no_visit)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_kunjungan');
+        $this->db->join('tb_visitor', 'tb_visitor.id_visitor=tb_kunjungan.id_visitor');
+        $this->db->where('tb_kunjungan.id_visitor', $no_visit);
+        $query = $this->db->get()->row();
+        return $query;
+    }
+
     public function save()
     {
         $post = $this->input->post(null, TRUE);
