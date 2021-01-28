@@ -88,15 +88,7 @@
                                         <?php echo form_error('jam_masuk') ?>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="jam_keluar">Jam Keluar</label>
-                                    <input type="datetime-local"
-                                        class="form-control <?php echo form_error('jam_keluar') ? 'is-invalid' : '' ?>"
-                                        id="jam_keluar" name="jam_keluar">
-                                    <div class="invalid-feedback">
-                                        <?php echo form_error('jam_keluar') ?>
-                                    </div>
-                                </div>
+
                             </div>
                             <!-- /.card-body -->
 

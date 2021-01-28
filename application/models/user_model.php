@@ -5,10 +5,8 @@ class User_model extends CI_Model
     private $_table = "tb_user";
     // public $id_auth;
     public $id_user;
-    public $nik;
-    public $nama_lengkap;
+    public $nik_karyawan;
     public $username;
-    public $level;
     public $password;
 
     // public function login($post)
@@ -31,11 +29,7 @@ class User_model extends CI_Model
                 'rules' => 'required'
             ],
 
-            [
-                'field' => 'nama_lengkap',
-                'label' => 'Nama Lengkap',
-                'rules' => 'required'
-            ],
+
 
             [
                 'field' => 'username',
@@ -43,11 +37,7 @@ class User_model extends CI_Model
                 'rules' => 'required'
             ],
 
-            [
-                'field' => 'level',
-                'label' => 'Level',
-                'rules' => 'required'
-            ],
+
 
             [
                 'field' => 'password',
@@ -59,22 +49,29 @@ class User_model extends CI_Model
 
     public function getAll()
     {
-        return $this->db->get($this->_table)->result();
+        $this->db->select('*');
+        $this->db->from('tb_user');
+        $this->db->join('tb_karyawan', 'tb_karyawan.nik_karyawan=tb_user.nik_karyawan');
+        $this->db->join('tb_posisi', 'tb_posisi.id_posisi=tb_karyawan.id_posisi');
+        $query = $this->db->get()->result();
+        return $query;
     }
 
     public function getById($id)
     {
         return $this->db->get_where($this->_table, ["id_user" => $id])->row();
     }
+    public function getby_nik($nik)
+    {
+        return $this->db->get_where($this->_table, ["nik_karyawan" => $nik])->row();
+    }
 
-    public function save()
+    public function save($post)
     {
         $post = $this->input->post();
         $this->id_user = uniqid();
-        $this->nik = $post['nik'];
-        $this->nama_lengkap = $post['nama_lengkap'];
+        $this->nik_karyawan = $post['nik'];
         $this->username = $post['username'];
-        $this->level = $post['level'];
         $this->password = password_hash($post['password'], PASSWORD_BCRYPT);
         return $this->db->insert($this->_table, $this);
     }
@@ -83,7 +80,7 @@ class User_model extends CI_Model
     {
         $post = $this->input->post();
         $this->id_user = $post['id_user'];
-        $this->nik = $post['nik'];
+        $this->nik_karyawan = $post['nik'];
         $this->nama_lengkap = $post['nama_lengkap'];
         $this->username = $post['username'];
         $this->level = $post['level'];

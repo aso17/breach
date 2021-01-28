@@ -27,20 +27,24 @@
                     <?php
                     $no = 1;
                     foreach ($posisi as $pos) { ?>
-                        <tr>
-                            <td class="text-center"><?php echo $no++ ?></td>
-                            <td class="text-center"><?php echo $pos->id_posisi ?></td>
-                            <td class="text-center"><?php echo $pos->bagian ?></td>
+                    <tr>
+                        <td class="text-center"><?php echo $no++ ?></td>
+                        <td class="text-center"><?php echo $pos->id_posisi ?></td>
+                        <td class="text-center"><?php echo $pos->level ?></td>
 
-                            <td class="text-center">
-                                <a class="text-center"><?php echo anchor('posisi/edit/' . $pos->id_posisi, '<div class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></div>') ?></a>
-                            </td>
-                            <td class="text-center"><a onclick="deleteConfirm('<?= base_url('posisi/delete/'  . $pos->id_posisi) ?>')" href="#!" style="margin-bottom: 5px;" class="btn btn-danger btn-sm btn-icon-split" data-toggle="tooltip" data-placement="top" title="Delete">
-                                    <span class="icon text-white-5">
-                                        <i class="fas fa-trash"></i>
-                                    </span></a>
-                            </td>
-                        </tr>
+                        <td class="text-center">
+                            <a
+                                class="text-center"><?php echo anchor('posisi/edit/' . $pos->id_posisi, '<div class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></div>') ?></a>
+                        </td>
+                        <td class="text-center"><a
+                                onclick="deleteConfirm('<?= base_url('posisi/delete/'  . $pos->id_posisi) ?>')"
+                                href="#!" style="margin-bottom: 5px;" class="btn btn-danger btn-sm btn-icon-split"
+                                data-toggle="tooltip" data-placement="top" title="Delete">
+                                <span class="icon text-white-5">
+                                    <i class="fas fa-trash"></i>
+                                </span></a>
+                        </td>
+                    </tr>
                     <?php } ?>
                 </tbody>
             </table>

@@ -75,7 +75,7 @@ class Model_visitor extends CI_Model
         return $this->db->insert($this->_table, $this);
     }
 
-    public function update($post)
+    public function update($post, $id)
     {
 
         $data = [
@@ -86,7 +86,7 @@ class Model_visitor extends CI_Model
             "nama_perusahaan" => $post['nama_perusahaan']
         ];
         $this->db->set($data);
-        $this->db->where('id_visitor', $post['no_visit']);
+        $this->db->where('id_visitor', $id);
         $this->db->update($this->_table, $data);
 
         //  = $post['id_visitor'];

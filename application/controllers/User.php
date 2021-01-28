@@ -8,6 +8,7 @@ class User extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('user_model');
+		$this->load->model('model_karyawan');
 		// check_not_login();
 	}
 
@@ -19,20 +20,38 @@ class User extends CI_Controller
 
 	public function add()
 	{
-
+		// $nik1 = $this->input->post('nik');
+		// $user = $this->user_model->getby_nik($nik1);
+		// var_dump($user);
+		// die;
 		$this->form_validation->set_message('required', '%s Tidak Boleh Kosong!!!');
 		$this->form_validation->set_message('numeric', '%s Harus Berupa Angka!!!');
 		$user = $this->user_model;
 		$validation = $this->form_validation;
 		$validation->set_rules($user->rules());
-		if ($this->form_validation->run() == FALSE) {
+		if ($this->form_validation->run() == false) {
 			$this->template->load('shared/index', 'user/add_user');
 		} else {
 			$post = $this->input->post(null, TRUE);
-			$this->user_model->save($post);
-			if ($this->db->affected_rows() > 0) {
-				$this->session->set_flashdata('success', 'User Berhasil Ditambahkan!');
-				redirect('user', 'refresh');
+			$nik = $this->input->post('nik');
+			$karyawan = $this->model_karyawan->getbyid($nik);
+			$users = $this->user_model->getby_nik($nik);
+
+
+			if ($karyawan != null) {
+				if ($users == false) {
+					$this->user_model->save($post);
+					if ($this->db->affected_rows() > 0) {
+						$this->session->set_flashdata('success', 'user berhasil di tambah!');
+						redirect('user', 'refresh');
+					}
+				} else {
+					$this->session->set_flashdata('warning', 'already available!');
+					redirect('user/add', 'refresh');
+				}
+			} else {
+				$this->session->set_flashdata('error', 'nik karyawan not found!');
+				redirect('user/add', 'refresh');
 			}
 		}
 	}

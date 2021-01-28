@@ -28,11 +28,11 @@
                 </thead>
                 <tbody>
                     <?php
-          $no = 1;
-          foreach ($user as $usr) { ?>
+                    $no = 1;
+                    foreach ($user as $usr) { ?>
                     <tr>
                         <td class="text-center"><?php echo $no++ ?></td>
-                        <td class="text-center"><?php echo $usr->nik ?></td>
+                        <td class="text-center"><?php echo $usr->nik_karyawan ?></td>
                         <td class="text-center"><?php echo $usr->nama_lengkap ?></td>
                         <td class="text-center"><?php echo $usr->username ?></td>
                         <td class="text-center"><?php echo $usr->level ?></td>

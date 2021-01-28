@@ -71,30 +71,22 @@ class Pelangvis extends CI_Controller
 
 	public function edit($id = null)
 	{
-		if (!isset($id)) redirect('pelangvis');
-		$pelangvis = $this->model_pelangvis;
-		$validation = $this->form_validation;
-		$validation->set_rules($pelangvis->rules());
 
-		if ($this->form_validation->run()) {
-			$post = $this->input->post(null, TRUE);
-			$this->model_pelangvis->update($post);
-			if ($this->db->affected_rows() > 0) {
-				$this->session->set_flashdata('success', 'Data Berhasil Diupdate!');
-				redirect('pelangvis', 'refresh');
-			} else {
-				$this->session->set_flashdata('warning', 'Data Tidak Diupdate!');
-				redirect('pelangvis', 'refresh');
-			}
-		}
-		$data['pelangvis'] = $this->model_pelangvis->getById($id);
-		if (!$data['pelangvis']) {
-			$this->session->set_flashdata('error', 'Data Tidak Diupdate!');
+		$data['pelangvis'] = $this->model_pelangvis->getbyid_join($id);
+		$data['kategori'] = $this->model_kategori->getAll();
+		$this->template->load('shared/index', 'pelangvis/edit_pelangvis', $data);
+	}
+	public function change()
+	{
+		$post = $this->input->post(null, TRUE);
+		$this->model_pelangvis->update($post);
+		if ($this->db->affected_rows() > 0) {
+			$this->session->set_flashdata('success', 'Data Berhasil Diupdate!');
+			redirect('pelangvis', 'refresh');
+		} else {
+			$this->session->set_flashdata('warning', 'Data Tidak Diupdate!');
 			redirect('pelangvis', 'refresh');
 		}
-		$data['tamu'] = $this->model_visitor->getAll();
-		$data['kriteria_pelanggaran'] = $this->model_kriteria->getAll();
-		$this->template->load('shared/index', 'pelangvis/edit_pelangvis', $data);
 	}
 	public function delete($id)
 	{

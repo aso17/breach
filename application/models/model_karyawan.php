@@ -65,8 +65,8 @@ class Model_karyawan extends CI_Model
     public function getAll()
     {
         $this->db->select('*');
-        $this->db->join('tb_posisi', 'tb_posisi.id_posisi = tb_karyawan.id_posisi', 'left');
         $this->db->from($this->_table);
+        $this->db->join('tb_posisi', 'tb_posisi.id_posisi = tb_karyawan.id_posisi', 'left');
         $query = $this->db->get();
         return $query->result();
     }

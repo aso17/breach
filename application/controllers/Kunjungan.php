@@ -19,7 +19,7 @@ class Kunjungan extends CI_Controller
         $kunjungan = $this->model_visitor->getBy_visit($novisit);
 
         $data = [
-            // "no_ktp" => $kunjungan->no_ktp,
+
             "nama_visitor" => $kunjungan->nama_visitor,
             "alamat" => $kunjungan->alamat,
             "nama_perusahaan" => $kunjungan->nama_perusahaan,
@@ -44,7 +44,7 @@ class Kunjungan extends CI_Controller
         $validation = $this->form_validation;
         $validation->set_rules($kunjungan->rules());
         if ($this->form_validation->run() == FALSE) {
-            // $data['id_visitor'] = $this->model_visitor->getAll();
+
             $this->template->load('shared/index', 'kunjungan/add_kunjungan');
         } else {
 
@@ -87,6 +87,14 @@ class Kunjungan extends CI_Controller
         $this->model_kunjungan->delete($id);
         if ($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('success', 'Data kunjungan Berhasil Dihapus!');
+            redirect('kunjungan', 'refresh');
+        }
+    }
+    public function out($id)
+    {
+        $this->model_kunjungan->change_out($id);
+        if ($this->db->affected_rows() > 0) {
+            $this->session->set_flashdata('success', 'Kunjungan Berahir');
             redirect('kunjungan', 'refresh');
         }
     }

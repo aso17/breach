@@ -45,7 +45,17 @@
                         <td class="text-center"><?= $kun->bertemu ?></td>
                         <td class="text-center"><?= $kun->kepentingan  ?></td>
                         <td class="text-center"><?= $kun->jam_masuk  ?></td>
-                        <td class="text-center"><?= $kun->jam_keluar  ?></td>
+                        <td class="text-center"><?php if ($kun->jam_keluar == null) { ?>
+                            <a href="<?= base_url('kunjungan/out/') . $kun->id_kunjungan ?>">
+                                <button class="btn btn-light btn-sm border-primary"><i
+                                        class="fas fa-sign-out-alt text-danger"></i>
+                                    kunjungan exit</button>
+                            </a>
+                            <?php } else {
+                                                        echo $kun->jam_keluar;
+                                                    } ?>
+                        </td>
+
                         <td class="text-center">
                             <a class="text-center">
                                 <div class="btn btn-success btn-sm" style="margin-bottom: 5px;"><i

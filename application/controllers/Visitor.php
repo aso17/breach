@@ -46,9 +46,10 @@ class Visitor extends CI_Controller
 	}
 	public function change()
 	{
-		$post = $this->input->post(null, true);
 
-		$this->model_visitor->update($post);
+		$post = $this->input->post(null, true);
+		$id = $this->input->post('id_visitor');
+		$this->model_visitor->update($post, $id);
 		if ($this->db->affected_rows() > 0) {
 			$this->session->set_flashdata('success', 'Visitor Berhasil Diupdate!');
 			redirect('visitor', 'refresh');

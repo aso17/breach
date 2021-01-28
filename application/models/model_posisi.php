@@ -4,7 +4,7 @@ class Model_posisi extends CI_Model
 {
     private $_table = "tb_posisi";
     public $id_posisi;
-    public $bagian;
+    public $level;
 
 
     public function rules()
@@ -18,8 +18,8 @@ class Model_posisi extends CI_Model
             ],
 
             [
-                'field' => 'bagian',
-                'label' => 'Bagian',
+                'field' => 'level',
+                'label' => 'level',
                 'rules' => 'required'
             ],
 
@@ -30,7 +30,10 @@ class Model_posisi extends CI_Model
 
     public function getAll()
     {
-        return $this->db->get($this->_table)->result();
+        $this->db->select('*');
+        $this->db->from('tb_posisi');
+        $query = $this->db->get()->result();
+        return $query;
     }
 
     public function getById($id)

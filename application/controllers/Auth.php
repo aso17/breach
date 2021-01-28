@@ -28,6 +28,8 @@ class auth extends CI_Controller
             $post = $this->input->post();
             $username = $post['username'];
             $user = $this->model_auth->cek_login($username);
+            // var_dump($user);
+            // die;
 
             if ($user != null) {
                 $post = $this->input->post();
@@ -38,7 +40,7 @@ class auth extends CI_Controller
 
                     $data = [
                         "id_user" => $user['id_user'],
-                        "nik" => $user['nik'],
+                        "nik" => $user['nik_karyawan'],
                         "nama_lengkap" => $user['nama_lengkap'],
                         "username" => $user['username'],
                         "level" => $user['level']

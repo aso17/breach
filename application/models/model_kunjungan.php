@@ -72,11 +72,7 @@ class Model_kunjungan extends CI_Model
                 'rules' => 'required'
             ],
 
-            [
-                'field' => 'jam_keluar',
-                'label' => 'Jam Keluar',
-                'rules' => 'required'
-            ],
+
 
         ];
     }
@@ -116,7 +112,7 @@ class Model_kunjungan extends CI_Model
         $this->bertemu = $post['bertemu'];
         $this->kepentingan = $post['kepentingan'];
         $this->jam_masuk = $post['jam_masuk'];
-        $this->jam_keluar = $post['jam_keluar'];
+
         return $this->db->insert($this->_table, $this);
     }
 
@@ -128,7 +124,7 @@ class Model_kunjungan extends CI_Model
         $this->betemu = $post['bertemu'];
         $this->kepentingan = $post['kepentingan'];
         $this->jam_masuk = $post['jam_masuk'];
-        $this->jam_keluar = $post['jam_keluar'];
+
         return $this->db->update($this->_table, $this, array('id_kunjungan' => $post['id_kunjungan']));
     }
 
@@ -143,5 +139,14 @@ class Model_kunjungan extends CI_Model
         $this->db->join('tb_visitor', 'tb_visitor.id_visitor=tb_kunjungan.id_visitor');
         $query = $this->db->get()->result();
         return $query;
+    }
+    public function change_out($id)
+    {
+        $data = [
+            "jam_keluar" => date("Y-m-d H:i:s")
+        ];
+        $this->db->set('jam_keluar', $data);
+        $this->db->where('id_kunjungan', $id);
+        $this->db->update('tb_kunjungan', $data);
     }
 }

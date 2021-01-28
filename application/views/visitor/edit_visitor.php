@@ -18,6 +18,7 @@
                         <form method="post" action="<?= base_url('visitor/change') ?>">
                             <div class="card-body">
                                 <div class="form-group">
+                                    <input type="hidden" name="id_visitor" value="<?= $visitor->id_visitor ?>">
                                     <label for="no_visit">Nomor Visitor</label>
                                     <input type="text" value="<?= $visitor->id_visitor ?>"
                                         class="form-control <?php echo form_error('id_visitor') ? 'is-invalid' : '' ?>"
