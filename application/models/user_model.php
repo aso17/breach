@@ -76,16 +76,19 @@ class User_model extends CI_Model
         return $this->db->insert($this->_table, $this);
     }
 
-    public function update($post)
+    public function update($post, $id)
     {
-        $post = $this->input->post();
-        $this->id_user = $post['id_user'];
-        $this->nik_karyawan = $post['nik'];
-        $this->nama_lengkap = $post['nama_lengkap'];
-        $this->username = $post['username'];
-        $this->level = $post['level'];
-        $this->password = password_hash($post['password'], PASSWORD_BCRYPT);
-        return $this->db->update($this->_table, $this, array('id_user' => $post['id_user']));
+        $data = [
+            "nik_karyawan" => $post['nik'],
+            "username" => $post['username']
+
+        ];
+        // $this->id_user = uniqid('user');
+        // $this->nik_karyawan = $post['nik'];
+        // $this->username = $post['username'];
+        $this->db->set($data);
+        $this->db->where('id_user', $id);
+        $this->db->update('tb_user', $data);
     }
 
     public function delete($id)

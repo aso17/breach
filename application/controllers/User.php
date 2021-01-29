@@ -56,32 +56,27 @@ class User extends CI_Controller
 		}
 	}
 
-	public function edit($id = null)
+	public function edit($id)
 	{
-		if (!isset($id)) redirect('user');
-		$user = $this->user_model;
-		$validation = $this->form_validation;
-		$validation->set_rules($user->rules());
 
-		if ($this->form_validation->run()) {
-			$post = $this->input->post(null, TRUE);
-			$this->user_model->update($post);
-			if ($this->db->affected_rows() > 0) {
-				$this->session->set_flashdata('success', 'Data User Berhasil Diupdate!');
-				redirect('user', 'refresh');
-			} else {
-				$this->session->set_flashdata('warning', 'Data User Tidak Diupdate!');
-				redirect('user', 'refresh');
-			}
-		}
 		$data['user'] = $this->user_model->getById($id);
-		if (!$data['user']) {
-			$this->session->set_flashdata('error', 'Data User Tidak Diupdate!');
-			redirect('user', 'refresh');
-		}
-		$data['user'] = $this->user_model->getById($id);
-
 		$this->template->load('shared/index', 'user/edit_user', $data);
+	}
+	public function change()
+	{
+		$post = $this->input->post();
+		$users = $this->model_karyawan->getbyid($post['nik']);
+		if ($users != null) {
+			$id = $post['id_user'];
+			$this->user_model->update($post, $id);
+			$this->session->set_flashdata('success', 'data was successfully updated');
+			redirect('user', 'refresh');
+		} else {
+			$id = $this->input->post('id_user');
+			$this->session->set_flashdata('error', 'Nik karyawan not found!');
+			$data['user'] = $this->user_model->getById($id);
+			$this->template->load('shared/index', 'user/edit_user', $data);
+		}
 	}
 	public function delete($id)
 	{

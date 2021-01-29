@@ -8,8 +8,7 @@ class Laporan_visitor extends CI_Controller
     {
         parent::__construct();
         $this->load->model('model_lapvis');
-        $this->load->model('model_kriteria');
-        $this->load->model('model_visitor');
+
         // check_not_login();
     }
 
