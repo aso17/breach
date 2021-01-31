@@ -10,17 +10,18 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3><i class="fas fa-edit">Tambah Kunjungan</i></h3>
+                            <h3><i class="fas fa-edit"> Form Edit Kunjungan</i></h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form method="post" action="">
+                        <form method="post" action="<?= base_url('kunjungan/change') ?>">
                             <div class="card-body">
                                 <div class="form-group">
+                                    <input type="hidden" name="id_kunjungan" value="<?= $kunjungan->id_kunjungan ?>">
                                     <label for="novisit">No Visitor</label>
                                     <input type="text" name="novisit" id="novisit" onkeyup="auto()"
                                         class="form-control <?php echo form_error('novisit') ? 'is-invalid' : '' ?>"
-                                        autocomplete="off">
+                                        autocomplete="off" value="<?= $kunjungan->id_visitor ?>">
                                     <div class="invalid-feedback">
                                         <?php echo form_error('novisit') ?>
                                     </div>
@@ -56,7 +57,7 @@
                                     <label for="no_kendaraan">No Kendaraan</label>
                                     <input type="text"
                                         class="form-control <?php echo form_error('no_kendaraan') ? 'is-invalid' : '' ?>"
-                                        id="no_kendaraan" name="no_kendaraan">
+                                        id="no_kendaraan" name="no_kendaraan" value="<?= $kunjungan->no_kendaraan ?>">
                                     <div class="invalid-feedback">
                                         <?php echo form_error('no_kendaraan') ?>
                                     </div>
@@ -65,7 +66,7 @@
                                     <label for="bertemu">Bertemu</label>
                                     <input type="text"
                                         class="form-control <?php echo form_error('bertemu') ? 'is-invalid' : '' ?>"
-                                        id="bertemu" name="bertemu">
+                                        id="bertemu" name="bertemu" value="<?= $kunjungan->bertemu ?>">
                                     <div class="invalid-feedback">
                                         <?php echo form_error('bertemu') ?>
                                     </div>
@@ -74,7 +75,7 @@
                                     <label for="kepentingan">Kepentingan</label>
                                     <input type="text"
                                         class="form-control <?php echo form_error('kepentingan') ? 'is-invalid' : '' ?>"
-                                        id="kepentingan" name="kepentingan">
+                                        id="kepentingan" name="kepentingan" value="<?= $kunjungan->kepentingan ?>">
                                     <div class="invalid-feedback">
                                         <?php echo form_error('kepentingan') ?>
                                     </div>
@@ -83,7 +84,7 @@
                                     <label for="jam_masuk">Jam Masuk</label>
                                     <input type="Datetime-local"
                                         class="form-control <?php echo form_error('jam_masuk') ? 'is-invalid' : '' ?>"
-                                        id="jam_masuk" name="jam_masuk">
+                                        id="jam_masuk" name="jam_masuk" value="<?= $kunjungan->jam_masuk ?>">
                                     <div class="invalid-feedback">
                                         <?php echo form_error('jam_masuk') ?>
                                     </div>
@@ -110,6 +111,7 @@
                 </div>
                 <!-- /.col -->
             </div>
+
             <!-- /.row -->
     </section>
     <!-- /.content -->

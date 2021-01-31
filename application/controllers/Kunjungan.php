@@ -56,31 +56,46 @@ class Kunjungan extends CI_Controller
         }
     }
 
-    public function edit($id = null)
+    public function edit($id)
     {
         if (!isset($id)) redirect('kunjungan');
-        $kunjungan = $this->model_kunjungan;
-        $validation = $this->form_validation;
-        $validation->set_rules($kunjungan->rules());
+        // $kunjungan = $this->model_kunjungan;
 
-        if ($this->form_validation->run()) {
-            $post = $this->input->post(null, TRUE);
-            $this->model_kunjungan->update($post);
-            if ($this->db->affected_rows() > 0) {
-                $this->session->set_flashdata('success', 'kunjungan Berhasil Diupdate!');
-                redirect('kunjungan', 'refresh');
-            } else {
-                $this->session->set_flashdata('warning', 'Data kunjungan Tidak Diupdate!');
-                redirect('kunjungan', 'refresh');
-            }
-        }
+
+        // $validation = $this->form_validation;
+        // $validation->set_rules($kunjungan->rules());
+
+        // if ($this->form_validation->run()) {
+        //     $post = $this->input->post(null, TRUE);
+        //     $this->model_kunjungan->update($post);
+        //     if ($this->db->affected_rows() > 0) {
+        //         $this->session->set_flashdata('success', 'kunjungan Berhasil Diupdate!');
+        //         redirect('kunjungan', 'refresh');
+        //     } else {
+        //         $this->session->set_flashdata('warning', 'Data kunjungan Tidak Diupdate!');
+        //         redirect('kunjungan', 'refresh');
+        //     }
+        // }
+        // if (!$data['kunjungan']) {
+        //     $this->session->set_flashdata('error', 'Data Tidak Diupdate!');
+        //     redirect('kunjungan', 'refresh');
+        // }
+
         $data['kunjungan'] = $this->model_kunjungan->getById($id);
-        if (!$data['kunjungan']) {
-            $this->session->set_flashdata('error', 'Data Tidak Diupdate!');
+
+        $this->template->load('shared/index', 'kunjungan/edit_kunjungan', $data);
+    }
+    public function change()
+    {
+        $id = $this->input->post('id_kunjungan');
+        $this->model_kunjungan->update($id);
+        if ($this->db->affected_rows() > 0) {
+            $this->session->set_flashdata('success', 'kunjungan Berhasil Diupdate!');
+            redirect('kunjungan', 'refresh');
+        } else {
+            $this->session->set_flashdata('warning', 'Data kunjungan Tidak Diupdate!');
             redirect('kunjungan', 'refresh');
         }
-        $data['id_visitor'] = $this->model_visitor->getAll();
-        $this->template->load('shared/index', 'kunjungan/edit_kunjungan', $data);
     }
     public function delete($id)
     {
@@ -92,7 +107,8 @@ class Kunjungan extends CI_Controller
     }
     public function out($id)
     {
-        $this->model_kunjungan->change_out($id);
+        $jam = $this->input->post('jam_keluar');
+        $this->model_kunjungan->change_out($jam, $id);
         if ($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('success', 'Kunjungan Berahir');
             redirect('kunjungan', 'refresh');

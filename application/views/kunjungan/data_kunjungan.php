@@ -45,23 +45,24 @@
                         <td class="text-center"><?= $kun->bertemu ?></td>
                         <td class="text-center"><?= $kun->kepentingan  ?></td>
                         <td class="text-center"><?= $kun->jam_masuk  ?></td>
-                        <td class="text-center"><?php if ($kun->jam_keluar == null) { ?>
-                            <a href="<?= base_url('kunjungan/out/') . $kun->id_kunjungan ?>">
-                                <button class="btn btn-light btn-sm border-primary"><i
-                                        class="fas fa-sign-out-alt text-danger"></i>
-                                    kunjungan exit</button>
-                            </a>
+                        <td class="text-center mx-2"><?php if ($kun->jam_keluar == null) { ?>
+                            <button onclick="" class="btn btn-light btn-sm btn-sm">kunjungan
+                                exit</button>
+
                             <?php } else {
-                                                        echo $kun->jam_keluar;
-                                                    } ?>
+                                                                echo $kun->jam_keluar;
+                                                            } ?>
                         </td>
 
                         <td class="text-center">
                             <a class="text-center">
-                                <div class="btn btn-success btn-sm" style="margin-bottom: 5px;"><i
-                                        class="fas fa-edit"></i></div>
+                                <a href="<?= base_url('kunjungan/edit/') . $kun->id_kunjungan ?>">
+                                    <div class="btn btn-success btn-sm" style="margin-bottom: 5px;"><i
+                                            class="fas fa-edit"></i></div>
+                                </a>
+
                             </a>
-                            <a onclick="deleteConfirm('<?= base_url('kunjungan/delete/') ?>" href="#!"
+                            <a onclick="Confirm('<?= base_url('kunjungan/delete/') ?>" href="#!"
                                 style="margin-bottom: 5px;" class="btn btn-danger btn-sm btn-icon-split"
                                 data-toggle="tooltip" data-placement="top" title="Delete">
                                 <span class="icon text-white-5">
@@ -79,4 +80,4 @@
 </div>
 
 </div>
-<!-- /.container-fluid -->
+<!-- /.content -->

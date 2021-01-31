@@ -49,12 +49,15 @@ class Model_posisi extends CI_Model
         return $this->db->insert($this->_table, $this);
     }
 
-    public function update($post)
+    public function update($post, $id)
     {
-        $post = $this->input->post();
-        $this->id_posisi = $post['id_posisi'];
-        $this->bagian = $post['bagian'];
-        return $this->db->update($this->_table, $this, array('id_posisi' => $post['id_posisi']));
+        $data = [
+            "level" => $post['level']
+        ];
+
+        $this->db->set('level', $data);
+        $this->db->where('id_posisi', $id);
+        $this->db->update($this->_table, $data);
     }
 
     public function delete($id)

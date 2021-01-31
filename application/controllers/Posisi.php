@@ -37,30 +37,24 @@ class Posisi extends CI_Controller
         }
     }
 
-    public function edit($id = null)
+    public function edit($id)
     {
-        if (!isset($id)) redirect('posisi');
-        $posisi = $this->model_posisi;
-        $validation = $this->form_validation;
-        $validation->set_rules($posisi->rules());
-
-        if ($this->form_validation->run()) {
-            $post = $this->input->post(null, TRUE);
-            $this->model_posisi->update($post);
-            if ($this->db->affected_rows() > 0) {
-                $this->session->set_flashdata('success', 'Posisi Berhasil Diupdate!');
-                redirect('posisi', 'refresh');
-            } else {
-                $this->session->set_flashdata('warning', 'Data Posisi Tidak Diupdate!');
-                redirect('posisi', 'refresh');
-            }
-        }
         $data['posisi'] = $this->model_posisi->getById($id);
-        if (!$data['posisi']) {
-            $this->session->set_flashdata('error', 'Data Posisi Tidak Diupdate!');
+        $this->template->load('shared/index', 'posisi/edit_posisi', $data);
+    }
+    public function change()
+    {
+        $post = $this->input->post(null, true);
+        $id = $post['id_posisi'];
+        $this->model_posisi->update($post, $id);
+        if ($this->db->affected_rows() > 0) {
+
+            $this->session->set_flashdata('success', 'level successfully changed');
+            redirect('posisi', 'refresh');
+        } else {
+            $this->session->set_flashdata('error', 'level failed to change');
             redirect('posisi', 'refresh');
         }
-        $this->template->load('shared/index', 'posisi/edit_posisi', $data);
     }
     public function delete($id)
     {

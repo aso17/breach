@@ -37,30 +37,39 @@ class Kategori extends CI_Controller
 		}
 	}
 
-	public function edit($id = null)
+	public function edit($id)
 	{
-		if (!isset($id)) redirect('kategori');
-		$kategori = $this->model_kategori;
-		$validation = $this->form_validation;
-		$validation->set_rules($kategori->rules());
 
-		if ($this->form_validation->run()) {
-			$post = $this->input->post(null, TRUE);
-			$this->model_kategori->update($post);
-			if ($this->db->affected_rows() > 0) {
-				$this->session->set_flashdata('success', 'Kategori Pelanggaran Berhasil Diupdate!');
-				redirect('kategori', 'refresh');
-			} else {
-				$this->session->set_flashdata('warning', 'Data Kategori Pelanggaran Tidak Diupdate!');
-				redirect('kategori', 'refresh');
-			}
-		}
+		// if (!isset($id)) redirect('kategori');
+		// $kategori = $this->model_kategori;
+		// $validation = $this->form_validation;
+		// $validation->set_rules($kategori->rules());
+
+		// if ($this->form_validation->run()) {
+		// 	$post = $this->input->post(null, TRUE);
+		// 	$this->model_kategori->update($post);
+		// 	if ($this->db->affected_rows() > 0) {
+		// 		$this->session->set_flashdata('success', 'Kategori Pelanggaran Berhasil Diupdate!');
+		// 		redirect('kategori', 'refresh');
+		// 	} else {
+		// 		$this->session->set_flashdata('warning', 'Data Kategori Pelanggaran Tidak Diupdate!');
+		// 		redirect('kategori', 'refresh');
+		// 	}
+		// }
 		$data['kategori'] = $this->model_kategori->getById($id);
-		if (!$data['kategori']) {
-			$this->session->set_flashdata('error', 'Data Kategori Pelanggaran Tidak Diupdate!');
+		$this->template->load('shared/index', 'kategori/edit_kategori', $data);
+	}
+	public function change()
+	{
+		$id = $this->input->post('id_kategori');
+		$this->model_kategori->update($id);
+		if ($this->db->affected_rows() > 0) {
+			$this->session->set_flashdata('success', 'Kategori successfully changed');
+			redirect('kategori', 'refresh');
+		} else {
+			$this->session->set_flashdata('warning', 'kategori failed to change!');
 			redirect('kategori', 'refresh');
 		}
-		$this->template->load('shared/index', 'kategori/edit_kategori', $data);
 	}
 	public function delete($id)
 	{
