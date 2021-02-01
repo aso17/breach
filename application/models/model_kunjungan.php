@@ -152,7 +152,7 @@ class Model_kunjungan extends CI_Model
         $query = $this->db->get()->result();
         return $query;
     }
-    public function change_out($jam, $id)
+    public function change_out($id, $jam)
     {
         $data = [
             "jam_keluar" => $jam

@@ -105,10 +105,11 @@ class Kunjungan extends CI_Controller
             redirect('kunjungan', 'refresh');
         }
     }
-    public function out($id)
+    public function out()
     {
+        $id = $this->input->post('id_kunjungan');
         $jam = $this->input->post('jam_keluar');
-        $this->model_kunjungan->change_out($jam, $id);
+        $this->model_kunjungan->change_out($id, $jam);
         if ($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('success', 'Kunjungan Berahir');
             redirect('kunjungan', 'refresh');

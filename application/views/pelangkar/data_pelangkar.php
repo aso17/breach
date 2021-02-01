@@ -25,6 +25,9 @@
                           <th class="text-center">NIK</th>
                           <th>Nama Karyawan</th>
                           <th class="text-center">Departemen</th>
+                          <th class="text-center">Keterangan</th>
+                          <th class="text-center">Ketegori</th>
+                          <th class="text-center">level</th>
                           <th class="text-center">Tanggal</th>
                           <th class="text-center">Status</th>
                           <th class="text-center">Bukti</th>
@@ -42,6 +45,9 @@
                           <td class="text-center"><?php echo $kar->nik_karyawan ?></td>
                           <td><?php echo $kar->nama_lengkap ?></td>
                           <td class="text-center"><?php echo $kar->departemen ?></td>
+                          <td class="text-center"><?= $kar->keterangan ?></td>
+                          <td class="text-center"><?= $kar->kategori ?></td>
+                          <td class="text-center"><?= $kar->level ?></td>
                           <td class="text-center"><?= $kar->waktu ?></td>
                           <td class="text-center" width="100px">
                               <?php if ($kar->status == 'open') {
@@ -72,12 +78,12 @@
                           </td>
                           <td class="text-center">
                               <a
-                                  class="text-center"><?php echo anchor('pelangkar/detail/' . $kar->id_pelangkar, '<span class="btn btn-warning btn-sm" style="margin-bottom: 5px;"><i class="fas fa-search-plus"></i></div>') ?></a>
+                                  class="text-center"><?php echo anchor('pelangkar/detail/' . $kar->id_pelanggaran, '<span class="btn btn-warning btn-sm" style="margin-bottom: 5px;"><i class="fas fa-search-plus"></i></div>') ?></a>
 
-                              <?php if ($this->session->userdata('level') == 2) : ?>
+                              <?php if ($this->session->userdata('level') == "Security") : ?>
                               <a
-                                  class="text-center"><?php echo anchor('pelangkar/edit/' . $kar->id_pelangkar, '<div class="btn btn-success btn-sm" style="margin-bottom: 5px;"><i class="fas fa-edit"></i></div>') ?></a>
-                              <a onclick="deleteConfirm('<?= base_url('pelangkar/delete/' . $kar->id_pelangkar) ?>')"
+                                  class="text-center"><?php echo anchor('pelangkar/edit/' . $kar->id_pelanggaran, '<div class="btn btn-success btn-sm" style="margin-bottom: 5px;"><i class="fas fa-edit"></i></div>') ?></a>
+                              <a onclick="deleteConfirm('<?= base_url('pelangkar/delete/' . $kar->id_pelanggaran) ?>')"
                                   href="#!" style="margin-bottom: 5px;" class="btn btn-danger btn-sm btn-icon-split"
                                   data-toggle="tooltip" data-placement="top" title="Delete">
                                   <span class="icon text-white-5">
@@ -91,6 +97,7 @@
               </table>
           </div>
       </div>
+  </div>
   </div>
   </div>
 

@@ -50,6 +50,8 @@ class Model_pelangkar extends CI_Model
         $this->db->from($this->_table);
         $this->db->join('tb_karyawan', 'tb_karyawan.nik_karyawan = tb_pelangkar.nik_karyawan', 'left');
         $this->db->join('tb_pelanggaran', 'tb_pelanggaran.id_pelanggaran = tb_pelangkar.id_pelanggaran', 'left');
+        $this->db->join('tb_kategori', 'tb_kategori.id_kategori = tb_pelanggaran.id_kategori', 'left');
+        $this->db->join('tb_posisi', 'tb_posisi.id_posisi = tb_karyawan.id_posisi', 'left');
         $query = $this->db->get();
         return $query->result();
     }
@@ -67,7 +69,7 @@ class Model_pelangkar extends CI_Model
         $this->db->join('tb_kategori', 'tb_kategori.id_kategori = tb_pelanggaran.id_kategori', 'left');
         $this->db->join('tb_karyawan', 'tb_karyawan.nik_karyawan = tb_pelangkar.nik_karyawan', 'left');
         $this->db->join('tb_posisi', 'tb_posisi.id_posisi = tb_karyawan.id_posisi', 'left');
-        $query = $this->db->where('tb_pelangkar.id_pelangkar', $id);
+        $query = $this->db->where('tb_pelangkar.id_pelanggaran', $id);
         $query = $this->db->get();
         return $query->row();
     }
@@ -82,36 +84,17 @@ class Model_pelangkar extends CI_Model
 
     public function update($post)
     {
-        $post = $this->input->post();
-        $file = $_FILES['bukti'];
-        if ($file) {
-
-            $config['upload_path']          = './assets/bukti/';
-            $config['allowed_types']        = 'jpg|png|jpeg|gif';
-            $config['max_size']             = '50000';
-            $this->load->library('upload', $config);
-            if ($this->upload->do_upload('bukti')) {
-                $bukti = $this->upload->data('file_name');
-            } else {
-                echo $this->upload->display_errors();
-            }
-        }
-        $this->id_pelangkar = $post['id_pelangkar'];
-        $this->nik_karyawan = $post['nik_karyawan'];
-        $this->nama_karyawan = $post['nama_karyawan'];
-        $this->departemen = $post['departemen'];
-        $this->kriteria = $post['kriteria'];
-        $this->ket_pelanggaran = $post['ket_pelanggaran'];
-        $this->waktu = $post['waktu'];
-        $this->bukti = $bukti;
-        $this->status = 'open';
-        return $this->db->update($this->_table, $this, array('id_pelangkar' => $post['id_pelangkar']));
+        $id = $this->input->post('id_pelanggaran');
+        $data = [
+            "nik_karyawan" => $post['nik'],
+            "id_pelanggaran" => $id
+        ];
+        $this->db->set($data);
+        $this->db->where('id_pelanggaran', $id);
+        $this->db->update('tb_pelangkar', $data);
     }
 
-    public function delete($id)
-    {
-        return $this->db->delete($this->_table, array("id_pelangkar" => $id));
-    }
+
 
     public function detail_kar($id_pelangkar)
     {
@@ -145,5 +128,10 @@ class Model_pelangkar extends CI_Model
         $this->db->select('kriteria');
         $this->db->select("count(*) as total");
         return $this->db->from('tb_pelangkar');
+    }
+
+    public function delete($id)
+    {
+        return $this->db->delete($this->_table, array("id_pelanggaran" => $id));
     }
 }

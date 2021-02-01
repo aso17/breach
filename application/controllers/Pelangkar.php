@@ -60,41 +60,29 @@ class Pelangkar extends CI_Controller
 			$post = $this->input->post(null, TRUE);
 			$this->model_pelanggaran->save($post);
 			$this->model_pelangkar->save($post, $id);
-			$this->session->set_flashdata('success', 'berhasil');
+			$this->session->set_flashdata('success', 'berhasil di tambahkan ');
 			redirect('pelangkar', 'refresh');
 		}
 	}
 
-	public function edit($id = null)
+	public function edit($id)
 	{
-		if (!isset($id)) redirect('pelangkar');
-		$pelangkar = $this->model_pelangkar;
-		$validation = $this->form_validation;
-		$validation->set_rules($pelangkar->rules());
-
-		if ($this->form_validation->run()) {
-			$post = $this->input->post(null, TRUE);
-			$this->model_pelangkar->update($post);
-			if ($this->db->affected_rows() > 0) {
-				$this->session->set_flashdata('success', 'Data Berhasil Diupdate!');
-				redirect('pelangkar', 'refresh');
-			} else {
-				$this->session->set_flashdata('warning', 'Data Tidak Diupdate!');
-				redirect('pelangkar', 'refresh');
-			}
-		}
-		$data['pelangkar'] = $this->model_pelangkar->getById($id);
-		if (!$data['pelangkar']) {
-			$this->session->set_flashdata('error', 'Data Tidak Diupdate!');
-			redirect('pelangkar', 'refresh');
-		}
-		$data['departemen'] = $this->model_departemen->getAll();
-		$data['kriteria'] = $this->model_kriteria->getAll();
+		$data['kategori'] = $this->model_kategori->getAll();
+		$data['pelangkar'] = $this->model_pelangkar->getbyid_join($id);
 		$this->template->load('shared/index', 'pelangkar/edit_pelangkar', $data);
+	}
+	public function change()
+	{
+		$post = $this->input->post(null, true);
+		$this->model_pelanggaran->update($post);
+		$this->model_pelangkar->update($post);
+		$this->session->set_flashdata('success', 'Data Berhasil Di update');
+		redirect('pelangkar', 'refresh');
 	}
 	public function delete($id)
 	{
-		$this->model_pelangkar->delete($id);
+		$this->model_pelanggaran->delete($id);
+		// $this->model_pelangkar->delete($id);
 		if ($this->db->affected_rows() > 0) {
 			$this->session->set_flashdata('success', 'Data Berhasil Dihapus!');
 			redirect('pelangkar', 'refresh');
