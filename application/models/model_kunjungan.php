@@ -97,7 +97,7 @@ class Model_kunjungan extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tb_kunjungan');
-        $this->db->join('tb_visitor', 'tb_visitor.id_visitor=tb_kunjungan.id_visitor');
+        $this->db->join('tb_visitor', 'tb_visitor.id_visitor=tb_kunjungan.id_visitor', 'left');
         $this->db->where('tb_kunjungan.id_visitor', $no_visit);
         $query = $this->db->get()->row();
         return $query;

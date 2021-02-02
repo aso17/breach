@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row">
                 <!-- left column -->
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
@@ -14,11 +14,13 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <?php //var_dump($kategori);  
-            ?>
+                        <?php //var_dump($pelangvis);
+                        ?>
 
                         <form method="post" action="<?= base_url('pelangvis/change') ?>" enctype="multipart/form-data">
                             <input type="hidden" name="idkunjungan" id="idkunjungan">
+                            <input type="hidden" name="id_pelangvis" value="<?= $pelangvis->id_pelangvis ?>">
+                            <input type="hidden" name="id_pelanggaran" value="<?= $pelangvis->id_pelanggaran ?>">
                             <div class="card-body">
                                 <div class="row ">
                                     <div
@@ -92,6 +94,25 @@
                                         <?php echo form_error('waktu') ?>
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="kategori">Kategori Pelanggaran</label>
+                                    <select name="kategori" id="kategori"
+                                        class="form-control custom-form <?= form_error('kategori') ? 'is-invalid' : '' ?>"
+                                        name="kategori">
+                                        <?php foreach ($kategori as $kate) : ?>
+                                        <?php if ($kate->id_kategori == $pelangkar->id_kategori) : ?>
+                                        <option value="<?= $kate->id_kategori ?>" selected><?= $kate->kategori ?>
+                                        </option>
+                                        <?php else : ?>
+                                        <option value="<?= $kate->id_kategori ?>"><?= $kate->kategori ?></option>
+                                        <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        <?php echo form_error('kategori'); ?>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label for="ket_pelanggaran">Kronologis Pelanggaran</label>
                                     <input type="text"
@@ -103,35 +124,43 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="kategori">Kategori Pelanggaran</label>
-                                    <select name="kategori" id="kategori"
-                                        class="form-control custom-form <?= form_error('kategori') ? 'is-invalid' : '' ?>"
-                                        name="kategori">
-                                        <option selected hidden value="">-- Pilih Kategori --</option>
-                                        <?php foreach ($kategori as $kat) : ?>
-                                        <option value="<?php $kat->id_kategori ?>"><?= $kat->kategori ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        <?php echo form_error('kategori'); ?>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="lampiran_ktp">Lampiran foto KTP</label>
-                                    <input type="file"
-                                        class="form-control <?php echo form_error('lampiran_ktp') ? 'is-invalid' : '' ?>"
-                                        id="lampiran_ktp" name="lampiran_ktp" placeholder="">
-                                    <div class="invalid-feedback">
-                                        <?php echo form_error('lampiran_ktp') ?>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="bukti">Bukti</label>
-                                    <input type="file"
-                                        class="form-control <?php echo form_error('bukti') ? 'is-invalid' : '' ?>"
-                                        id="bukti" name="bukti" placeholder="">
-                                    <div class="invalid-feedback">
-                                        <?php echo form_error('bukti') ?>
+                                    <div class="row mt-2">
+                                        <div class="col-md-5">
+                                            <p>Lampiran Sebelumnya</p>
+
+
+                                            <img src="<?php echo base_url() . './assets/bukti/' . $pelangvis->bukti ?>"
+                                                class="img-thumbnail mb-4" style="width: 100px;height:100px"><br>
+
+                                            <label for="lampiran_ktp">Ganti Lampiran ktp</label>
+                                            <input type="file"
+                                                class="form-control <?php echo form_error('lampiran_ktp') ? 'is-invalid' : '' ?>"
+                                                id="lampiran_ktp" name="lampiran_ktp" placeholder="">
+                                            <div class="invalid-feedback">
+                                                <?php echo form_error('lampiran_ktp') ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <p>Bukti Sebelumnya</p>
+
+
+                                            <div class="form-group">
+
+
+                                                <img src="<?php echo base_url() . './assets/bukti/' . $pelangvis->lampiran_ktp ?>"
+                                                    class="img-thumbnail mb-4" style="width: 100px;height:100px"><br>
+
+                                                <label for="bukti">Ganti Bukti</label>
+                                                <input type="file"
+                                                    class="form-control <?php echo form_error('bukti') ? 'is-invalid' : '' ?>"
+                                                    id="bukti" name="bukti" placeholder="">
+                                                <div class="invalid-feedback">
+                                                    <?php echo form_error('bukti') ?>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -147,7 +176,7 @@
                                     style="margin-right: 5px;">
                                     <span class="icon text-white-5">
                                         <i class="fas fa-save"></i></span>
-                                    <span class="font-weight-bold text">Simpan</span></a></button>
+                                    <span class="font-weight-bold text">Update</span></a></button>
                             </div>
                         </form>
                     </div>

@@ -54,10 +54,22 @@ class Model_pelangvis extends CI_Model
         $this->db->join('tb_kategori', 'tb_kategori.id_kategori = tb_pelanggaran.id_kategori', 'left');
         $this->db->join('tb_kunjungan', 'tb_kunjungan.id_kunjungan = tb_pelangvis.id_kunjungan', 'left');
         $this->db->join('tb_visitor', 'tb_visitor.id_visitor = tb_kunjungan.id_visitor', 'left');
-        $query = $this->db->where('tb_pelangvis.id_pelangvis', $id);
+        $query = $this->db->where('tb_pelangvis.id_pelanggaran', $id);
         $query = $this->db->get();
         return $query->row();
     }
+    // public function  getbyid_join_kunjungan($id)
+    // {
+    //     $this->db->select('*');
+    //     $this->db->from('tb_pelanggaran');
+    //     // $this->db->join('tb_pelangvis', 'tb_pelangvis.id_pelanggaran = tb_pelanggaran.id_pelanggaran', 'left');
+    //     $this->db->join('tb_kategori', 'tb_kategori.id_kategori = tb_pelanggaran.id_kategori', 'left');
+    //     // $this->db->join('tb_kunjungan', 'tb_kunjungan.id_kunjungan = tb_pelangvis.id_kunjungan', 'left');
+    //     // $this->db->join('tb_visitor', 'tb_visitor.id_visitor = tb_kunjungan.id_visitor', 'left');
+    //     $query = $this->db->where('tb_pelanggaran.id_pelanggaran', $id);
+    //     $query = $this->db->get();
+    //     return $query->row();
+    // } 
 
     public function getById($id)
     {
@@ -92,30 +104,43 @@ class Model_pelangvis extends CI_Model
     public function update($post)
     {
         $post = $this->input->post();
-        $file = $_FILES['bukti_pelanggaran'];
-        if ($file) {
+        $id = $this->input->post('id_pelangvis');
+        //$id = $this->input->post('idkunjungan');
+        $file = $_FILES['lampiran_ktp']['name'];
+        if ($file != null) {
 
             $config['upload_path']          = './assets/bukti/';
             $config['allowed_types']        = 'jpg|png|jpeg|gif';
             $config['max_size']             = '50000';
             $this->load->library('upload', $config);
-            if ($this->upload->do_upload('bukti_pelanggaran')) {
-                $bukti_pelanggaran = $this->upload->data('file_name');
+            if ($this->upload->do_upload('lampiran_ktp')) {
+                $lampiran_ktp = $this->upload->data('file_name');
             } else {
                 echo $this->upload->display_errors();
             }
+
+
+            $data = [
+                //"id_pelangvis" => $post['id_pelangvis'],
+                "id_kunjungan" => $post['idkunjungan'],
+                "id_pelanggaran" => $post['id_pelanggaran'],
+                "lampiran_ktp" => $lampiran_ktp
+
+            ];
+
+            $this->db->where('id_pelangvis', $id);
+            $this->db->update('tb_pelangvis', $data);
+        } else {
+            $data = [
+
+                "id_kunjungan" => $post['idkunjungan'],
+                "id_pelanggaran" => $post['id_pelanggaran']
+
+            ];
+
+            $this->db->where('id_pelangvis', $id);
+            $this->db->update('tb_pelangvis', $data);
         }
-        $this->id_pelangvis = uniqid();
-        $this->nik_visitor = $post['nik_visitor'];
-        $this->nama_visitor = $post['nama_visitor'];
-        $this->tamu = $post['tamu'];
-        $this->alamat = $post['alamat'];
-        $this->kriteria_pelanggaran = $post['kriteria_pelanggaran'];
-        $this->keterangan = $post['keterangan'];
-        $this->waktu = $post['waktu'];
-        $this->bukti_pelanggaran = $bukti_pelanggaran;
-        $this->status = 'open';
-        return $this->db->update($this->_table, $this, array('id_pelangvis' => $post['id_pelangvis']));
     }
 
     public function delete($id)
@@ -143,7 +168,7 @@ class Model_pelangvis extends CI_Model
     public function update_status_close($id)
     {
         $this->db->set('status', 'close');
-        $this->db->where('id_pelangvis', $id);
-        $this->db->update('tb_pelangvis');
+        $this->db->where('id_pelanggaran', $id);
+        $this->db->update('tb_pelanggaran');
     }
 }

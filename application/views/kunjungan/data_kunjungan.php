@@ -19,6 +19,7 @@
                     <tr>
                         <th class="text-center">No</th>
                         <th class="text-center">No KTP</th>
+                        <th class="text-center">No Visitor</th>
                         <th class="text-center">Nama Visitor</th>
                         <th class="text-center">Alamat</th>
                         <th class="text-center">Nama Perusahaan</th>
@@ -35,6 +36,7 @@
                     <tr>
                         <td class="text-center"><?php echo $i++ ?></td>
                         <td class="text-center"><?php echo $kun->no_ktp ?></td>
+                        <td class="text-center"><?php echo $kun->id_visitor ?></td>
                         <td class="text-center"><?php echo $kun->nama_visitor ?></td>
                         <td class="text-center"><?php echo $kun->alamat ?></td>
                         <td class="text-center"><?php echo $kun->nama_perusahaan ?></td>

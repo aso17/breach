@@ -3,7 +3,7 @@
     <!-- Card Header - Dropdown -->
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">DATA PELANGGARAN VISITOR</h6>
-        <?php if ($this->session->userdata('level') == 1) : ?>
+        <?php if ($this->session->userdata('level') == "Admin") : ?>
         <div class="card-header">
             <a href="<?php echo base_url('pelangvis/add') ?>" class="btn btn-primary btn-icon-split btn-sm"
                 style="margin-bottom: 5px;">
@@ -12,7 +12,7 @@
                 </span>
                 <span class="font-weight-bold text">Tambah</span></a>
         </div>
-        <?php endif ?>
+        <?php endif; ?>
     </div>
 
 
@@ -35,10 +35,10 @@
                 </thead>
                 <tbody>
                     <?php
-          // var_dump($pelangvis);
-          // die;
-          $no = 1;
-          foreach ($pelangvis as $visit) { ?>
+                    // var_dump($pelangvis);
+                    // die;
+                    $no = 1;
+                    foreach ($pelangvis as $visit) { ?>
                     <tr>
                         <td class="text-center"><?php echo $no++ ?></td>
                         <td class="text-center"><?php echo $visit->no_ktp ?></td>
@@ -48,20 +48,20 @@
                         <td><?= $visit->kategori ?></td>
                         <td class="text-center" width="100px">
                             <?php if ($visit->status == 'open') {
-                  echo '<a href="" class="badge badge-primary">Open</a>';
-                } ?>
+                                    echo '<a href="" class="badge badge-primary">Open</a>';
+                                } ?>
                             <?php if ($visit->status == 'close') {
-                  echo '<a href="" class="badge badge-success">Close</a>';
-                } ?>
+                                    echo '<a href="" class="badge badge-success">Close</a>';
+                                } ?>
                         </td>
                         <td class="text-center" width="100px">
                             <a class="btn btn-outline-warning btn-sm" data-toggle="modal"
-                                data-target="#modal-detail<?= $visit->id_pelangvis ?>"><span>
+                                data-target="#modal-detail<?= $visit->id_pelanggaran ?>"><span>
                                     <i class="fas fa-eye"></i>
                                 </span>
                                 <span class="font-weight-bold">Lihat</span></a>
                             <!-- Modal -->
-                            <div class="modal fade" id="modal-detail<?= $visit->id_pelangvis ?>" tabindex="-1"
+                            <div class="modal fade" id="modal-detail<?= $visit->id_pelanggaran ?>" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -77,12 +77,12 @@
 
                         <td class="text-center">
                             <a
-                                class="text-center"><?php echo anchor('pelangvis/detail/' . $visit->id_pelangvis, '<div class="btn btn-warning btn-sm" style="margin-bottom: 5px;"><i class="fas fa-search-plus"></i></div>') ?></a>
+                                class="text-center"><?php echo anchor('pelangvis/detail/' . $visit->id_pelanggaran, '<div class="btn btn-warning btn-sm" style="margin-bottom: 5px;"><i class="fas fa-search-plus"></i></div>') ?></a>
 
-                            <?php if ($this->session->userdata('level') == 1) : ?>
+                            <?php if ($this->session->userdata('level') == "Admin") : ?>
                             <a
-                                class="text-center"><?php echo anchor('pelangvis/edit/' . $visit->id_pelangvis, '<div class="btn btn-success btn-sm" style="margin-bottom: 5px;"><i class="fas fa-edit"></i></div>') ?></a>
-                            <a onclick="deleteConfirm('<?= base_url('pelangvis/delete/' . $visit->id_pelangvis) ?>')"
+                                class="text-center"><?php echo anchor('pelangvis/edit/' . $visit->id_pelanggaran, '<div class="btn btn-success btn-sm" style="margin-bottom: 5px;"><i class="fas fa-edit"></i></div>') ?></a>
+                            <a onclick="deleteConfirm('<?= base_url('pelangvis/delete/' . $visit->id_pelanggaran) ?>')"
                                 href="#!" style="margin-bottom: 5px;" class="btn btn-danger btn-sm btn-icon-split"
                                 data-toggle="tooltip" data-placement="top" title="Delete">
                                 <span class="icon text-white-5">
@@ -99,6 +99,8 @@
         </div>
     </div>
 </div>
-
 </div>
+</div>
+
+
 <!-- /.container-fluid -->

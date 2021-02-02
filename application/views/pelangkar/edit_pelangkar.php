@@ -97,7 +97,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="bukti">bukti</label>
+                                    <label for="bukti">bukti sebelumya</label>
                                     <div class="row">
                                         <div class="col-md-3">
 

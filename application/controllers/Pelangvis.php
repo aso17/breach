@@ -25,7 +25,8 @@ class Pelangvis extends CI_Controller
 
 		$novisit = $_GET['novisit'];
 		$kunjungan = $this->model_kunjungan->getByno_visit($novisit);
-
+		// var_dump($kunjungan);
+		// die;
 
 		$data = [
 
@@ -79,6 +80,7 @@ class Pelangvis extends CI_Controller
 	public function change()
 	{
 		$post = $this->input->post(null, TRUE);
+		$this->model_pelanggaran->update_vis($post);
 		$this->model_pelangvis->update($post);
 		if ($this->db->affected_rows() > 0) {
 			$this->session->set_flashdata('success', 'Data Berhasil Diupdate!');
@@ -90,7 +92,7 @@ class Pelangvis extends CI_Controller
 	}
 	public function delete($id)
 	{
-		$this->model_pelangvis->delete($id);
+		$this->model_pelanggaran->delete($id);
 		if ($this->db->affected_rows() > 0) {
 			$this->session->set_flashdata('success', 'Data Berhasil Dihapus!');
 			redirect('pelangvis', 'refresh');

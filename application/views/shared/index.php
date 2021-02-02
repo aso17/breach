@@ -53,8 +53,8 @@
                     <span>Dashboard</span></a>
             </li>
 
-            <!-- <?php //if ($this->session->userdata('level') == 1) : 
-            ?> -->
+            <!-- <?php if ($this->session->userdata('level') == "Admin") :
+                    ?> -->
             <!-- Divider -->
             <hr class="sidebar-divider">
             <!-- Heading -->
@@ -80,8 +80,8 @@
                     </div>
                 </div>
             </li>
-            <!-- <?php  //endif 
-            ?> -->
+            <!-- <?php endif
+                    ?> -->
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -106,8 +106,7 @@
                 </div>
             </li>
 
-            <!-- <?php //if ($this->session->userdata('level') == 1) : 
-            ?> -->
+            <?php if ($this->session->userdata('level') == "Admin") : ?>
             <!-- Divider -->
             <hr class="sidebar-divider">
             <!-- Heading -->
@@ -131,8 +130,7 @@
                     </div>
                 </div>
             </li>
-            <!-- <?php //endif 
-            ?> -->
+            <!-- <?php endif; ?> -->
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -203,13 +201,13 @@
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <?php //foreach ($user as $us) : 
-                ?>
+                                ?>
                                 <a class="dropdown-item" href="<?= base_url('user/edit_pass')  ?>">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Edit Password
                                 </a>
                                 <?php //endforeach; 
-                ?>
+                                ?>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
