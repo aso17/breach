@@ -9,6 +9,7 @@ class Cetak extends CI_Controller
     {
         parent::__construct();
         $this->load->model('model_laporan');
+        check_not_login();
     }
     public function pdf($tanggalawal, $tanggalakhir)
     {

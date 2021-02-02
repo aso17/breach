@@ -9,6 +9,7 @@ class Cetak_lapvis extends CI_Controller
     {
         parent::__construct();
         $this->load->model('model_lapvis');
+        check_not_login();
     }
     public function mypdf($tanggalawal, $tanggalakhir)
     {

@@ -6,6 +6,7 @@ class auth extends CI_Controller
     {
         parent::__construct();
         $this->load->model('model_auth');
+        check_already_login();
     }
 
     public function index()
@@ -60,8 +61,11 @@ class auth extends CI_Controller
 
     public function logout()
     {
-        session_unset();
-        session_destroy();
+        $this->session->unset_userdata('id_user');
+        $this->session->unset_userdata('nik');
+        $this->session->unset_userdata('nama_lengkap');
+        $this->session->unset_userdata('username');
+        $this->session->unset_userdata('level');
         redirect('auth/login');
     }
 }

@@ -4,9 +4,17 @@ function check_already_login()
 {
     $CI = &get_instance();
     $user_session = $CI->session->userdata('id_user');
-    if ($user_session) {
-        $CI->session->set_flashdata('error', 'Anda Sudah Login!');
-        redirect('dashboard', 'refresh');
+    $CI->load->model('model_pelanggaran');
+    if ($user_session != null) {
+        // $CI->session->set_flashdata('error', 'Anda Sudah Login!');
+        $data['vringan'] = $CI->model_pelanggaran->get_num1();
+        $data['vsedang'] = $CI->model_pelanggaran->get_num2();
+        $data['vberat'] = $CI->model_pelanggaran->get_num3();
+        $data['kringan'] = $CI->model_pelanggaran->get_num4();
+        $data['ksedang'] = $CI->model_pelanggaran->get_num5();
+        $data['kberat'] = $CI->model_pelanggaran->get_num6();
+
+        $CI->template->load('shared/index', 'dashboard/index', $data);
     }
 }
 
