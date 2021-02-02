@@ -8,9 +8,7 @@ class Laporan extends CI_Controller
     {
         parent::__construct();
         $this->load->model('model_laporan');
-        // $this->load->model('model_departemen');
-        // $this->load->model('model_kriteria');
-        // check_not_login();
+        check_not_login();
     }
 
     function filter()

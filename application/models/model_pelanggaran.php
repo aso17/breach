@@ -124,4 +124,60 @@ class model_pelanggaran extends CI_Model
             $this->db->update($this->_table, $data);
         }
     }
+
+
+    public  function get_num1()
+    {
+        $this->db->select('count(' . 'tb_pelangvis.id_pelanggaran' . ') as ring');
+        $this->db->from('tb_pelangvis');
+        $this->db->join('tb_pelanggaran', 'tb_pelanggaran.id_pelanggaran=tb_pelangvis.id_pelanggaran');
+        $this->db->join('tb_kategori', 'tb_kategori.id_kategori=tb_pelanggaran.id_kategori');
+        $this->db->where('tb_pelanggaran.id_kategori', '5feea06453');
+        return $this->db->get()->row();
+    }
+    public  function get_num2()
+    {
+        $this->db->select('count(' . 'tb_pelanggaran.id_pelanggaran' . ') as sed');
+        $this->db->from('tb_pelangvis');
+        $this->db->join('tb_pelanggaran', 'tb_pelanggaran.id_pelanggaran=tb_pelangvis.id_pelanggaran');
+        $this->db->join('tb_kategori', 'tb_kategori.id_kategori=tb_pelanggaran.id_kategori');
+        $this->db->where('tb_pelanggaran.id_kategori', '5feea48629');
+        return $this->db->get()->row();
+    }
+    public  function get_num3()
+    {
+        $this->db->select('count(' . 'tb_pelanggaran.id_pelanggaran' . ') as ber');
+        $this->db->from('tb_pelangvis');
+        $this->db->join('tb_pelanggaran', 'tb_pelanggaran.id_pelanggaran=tb_pelangvis.id_pelanggaran');
+        $this->db->join('tb_kategori', 'tb_kategori.id_kategori=tb_pelanggaran.id_kategori');
+        $this->db->where('tb_pelanggaran.id_kategori', '600066b43a');
+        return $this->db->get()->row();
+    }
+    public  function get_num4()
+    {
+        $this->db->select('count(' . 'tb_pelanggaran.id_pelanggaran' . ') as ring');
+        $this->db->from('tb_pelangkar');
+        $this->db->join('tb_pelanggaran', 'tb_pelanggaran.id_pelanggaran=tb_pelangkar.id_pelanggaran');
+        $this->db->join('tb_kategori', 'tb_kategori.id_kategori=tb_pelanggaran.id_kategori');
+        $this->db->where('tb_pelanggaran.id_kategori', '5feea06453');
+        return $this->db->get()->row();
+    }
+    public  function get_num5()
+    {
+        $this->db->select('count(' . 'tb_pelanggaran.id_pelanggaran' . ') as sed');
+        $this->db->from('tb_pelangkar');
+        $this->db->join('tb_pelanggaran', 'tb_pelanggaran.id_pelanggaran=tb_pelangkar.id_pelanggaran');
+        $this->db->join('tb_kategori', 'tb_kategori.id_kategori=tb_pelanggaran.id_kategori');
+        $this->db->where('tb_pelanggaran.id_kategori', '5feea48629');
+        return $this->db->get()->row();
+    }
+    public  function get_num6()
+    {
+        $this->db->select('count(' . 'tb_pelanggaran.id_pelanggaran' . ') as ber');
+        $this->db->from('tb_pelangkar');
+        $this->db->join('tb_pelanggaran', 'tb_pelanggaran.id_pelanggaran=tb_pelangkar.id_pelanggaran');
+        $this->db->join('tb_kategori', 'tb_kategori.id_kategori=tb_pelanggaran.id_kategori');
+        $this->db->where('tb_pelanggaran.id_kategori', '600066b43a');
+        return $this->db->get()->row();
+    }
 }

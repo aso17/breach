@@ -12,7 +12,7 @@ class Pelangvis extends CI_Controller
 		$this->load->model('model_visitor');
 		$this->load->model('model_kategori');
 		$this->load->model('model_pelanggaran');
-		// check_not_login();
+		check_not_login();
 	}
 
 	public function index()

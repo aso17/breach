@@ -9,7 +9,7 @@ class Kunjungan extends CI_Controller
         parent::__construct();
         $this->load->model('model_kunjungan');
         $this->load->model('model_visitor');
-        // check_not_login();
+        check_not_login();
     }
 
     public function cari()

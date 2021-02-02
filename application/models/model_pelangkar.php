@@ -118,16 +118,16 @@ class Model_pelangkar extends CI_Model
     public function update_status_close($id)
     {
         $this->db->set('status', 'close');
-        $this->db->where('id_pelangkar', $id);
-        $this->db->update('tb_pelangkar');
+        $this->db->where('id_pelanggaran', $id);
+        $this->db->update('tb_pelanggaran');
     }
 
     function chart()
     {
-        $this->db->group_by('kriteria');
-        $this->db->select('kriteria');
+        $this->db->group_by('kategori');
+        $this->db->select('kategori');
         $this->db->select("count(*) as total");
-        return $this->db->from('tb_pelangkar');
+        return $this->db->from('tb_pelanggaran');
     }
 
     public function delete($id)

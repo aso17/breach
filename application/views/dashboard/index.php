@@ -77,6 +77,7 @@
                 </div>
             </div>
             <!-- Pelanggaran Sedang -->
+
             <div class="col-xl-4 col-md-5 mb-4">
                 <div class="card border-left-warning shadow h-100 py-2">
                     <div class="card-body">
@@ -166,7 +167,8 @@
 <link href="<?php echo base_url('assets/chart.js/Chart.js') ?>" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="<?php echo base_url('assets/chart.js/Chart.min.js') ?>"></script>
 <?php
-
+// var_dump($ringan);
+// die;
 
 ?>
 <div>
@@ -189,14 +191,23 @@
                     backgroundColor: "red",
                     borderColor: "pink",
                     borderWidth: 1,
-                    data: []
+                    data: [
+                        <?= $kringan->ring; ?>,
+                        <?= $ksedang->sed; ?>,
+                        <?= $kberat->ber; ?>,
+
+                    ]
                 },
                 {
                     label: "Pelanggaran Visitor",
                     backgroundColor: "blue",
                     borderColor: "lightblue",
                     borderWidth: 1,
-                    data: []
+                    data: [
+                        <?= $vringan->ring; ?>,
+                        <?= $vsedang->sed; ?>,
+                        <?= $vberat->ber; ?>,
+                    ]
                 },
             ]
         };
@@ -227,6 +238,8 @@
         });
         </script>
     </body>
+</div>
+</div>
 </div>
 
 </html>

@@ -51,10 +51,10 @@
                           <td class="text-center"><?= $kar->waktu ?></td>
                           <td class="text-center" width="100px">
                               <?php if ($kar->status == 'open') {
-                                        echo '<a href="" class="badge badge-primary">Open</a>';
+                                        echo '<p class="badge badge-primary">Open</p>';
                                     } ?>
                               <?php if ($kar->status == 'close') {
-                                        echo '<a href="" class="badge badge-success">Close</a>';
+                                        echo '<p class="badge badge-success">Close</p>';
                                     } ?>
                           </td>
                           <td class="text-center" width="100px">

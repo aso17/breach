@@ -8,7 +8,7 @@ class Kategori extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('model_kategori');
-		// check_not_login();
+		check_not_login();
 	}
 
 	public function index()
@@ -40,22 +40,6 @@ class Kategori extends CI_Controller
 	public function edit($id)
 	{
 
-		// if (!isset($id)) redirect('kategori');
-		// $kategori = $this->model_kategori;
-		// $validation = $this->form_validation;
-		// $validation->set_rules($kategori->rules());
-
-		// if ($this->form_validation->run()) {
-		// 	$post = $this->input->post(null, TRUE);
-		// 	$this->model_kategori->update($post);
-		// 	if ($this->db->affected_rows() > 0) {
-		// 		$this->session->set_flashdata('success', 'Kategori Pelanggaran Berhasil Diupdate!');
-		// 		redirect('kategori', 'refresh');
-		// 	} else {
-		// 		$this->session->set_flashdata('warning', 'Data Kategori Pelanggaran Tidak Diupdate!');
-		// 		redirect('kategori', 'refresh');
-		// 	}
-		// }
 		$data['kategori'] = $this->model_kategori->getById($id);
 		$this->template->load('shared/index', 'kategori/edit_kategori', $data);
 	}

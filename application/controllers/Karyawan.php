@@ -9,7 +9,7 @@ class Karyawan extends CI_Controller
 		parent::__construct();
 		$this->load->model('model_karyawan');
 		$this->load->model('model_posisi');
-		// check_not_login();
+		check_not_login();
 	}
 
 	public function index()

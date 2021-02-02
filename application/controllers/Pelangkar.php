@@ -11,7 +11,7 @@ class Pelangkar extends CI_Controller
 		$this->load->model('model_pelanggaran');
 		$this->load->model('model_kategori');
 		$this->load->model('model_karyawan');
-		// check_not_login();
+		check_not_login();
 	}
 
 	public function index()

@@ -92,7 +92,7 @@ class Model_pelangvis extends CI_Model
                 echo $this->upload->display_errors();
             }
         }
-        $this->id_pelangvis = uniqid('pelvis');
+        $this->id_pelangvis = uniqid('');
         $this->id_kunjungan = $post['idkunjungan'];
         $this->id_pelanggaran = $id;
         $this->lampiran_ktp = $foto_ktp;

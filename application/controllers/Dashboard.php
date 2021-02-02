@@ -7,13 +7,20 @@ class Dashboard extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('user_model');
-		// check_not_login();
+		$this->load->model('model_pelanggaran');
+		check_not_login();
 	}
 
 	public function index()
 	{
-		// $id = $this->session->userdata('id_user');
-		// $data['user'] = $this->user_model->getById($id);
-		$this->template->load('shared/index', 'dashboard/index');
+		$data['vringan'] = $this->model_pelanggaran->get_num1();
+		$data['vsedang'] = $this->model_pelanggaran->get_num2();
+		$data['vberat'] = $this->model_pelanggaran->get_num3();
+		$data['kringan'] = $this->model_pelanggaran->get_num4();
+		$data['ksedang'] = $this->model_pelanggaran->get_num5();
+		$data['kberat'] = $this->model_pelanggaran->get_num6();
+
+
+		$this->template->load('shared/index', 'dashboard/index', $data);
 	}
 }
