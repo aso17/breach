@@ -17,9 +17,9 @@
                         <form method="post" action="">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="nik_karyawan">NIK Karyawan</label>
                                     <input type="hidden" value="<?= $karyawan->nik_karyawan ?>" class="form-control"
-                                        id="nik_karyawan" name="nik_karyawan">
+                                        id="nik" name="nik">
+                                    <label for="nik_karyawan">NIK Karyawan</label>
                                     <input type="text"
                                         value="<?= $this->input->post('nik_karyawan') ? $this->input->post('nik_karyawan') : $karyawan->nik_karyawan ?>"
                                         class="form-control <?php echo form_error('nik_karyawan') ? 'is-invalid' : '' ?>"
@@ -51,7 +51,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="id_posisi">Bagian</label>
+                                    <label for="id_posisi">level</label>
                                     <select name="id_posisi" id="id_posisi"
                                         class="form-control custom-form <?= form_error('id_posisi') ? 'is-invalid' : '' ?>"
                                         name="id_posisi">

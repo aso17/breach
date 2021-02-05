@@ -19,7 +19,7 @@
                     <tr>
                         <th class="text-center">No</th>
                         <th class="text-center">ID Posisi</th>
-                        <th class="text-center">Bagian</th>
+                        <th class="text-center">Level</th>
                         <th class="text-center" colspan='3'>Aksi</th>
                     </tr>
                 </thead>

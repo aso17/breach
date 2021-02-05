@@ -8,8 +8,8 @@ class Laporan_visitor extends CI_Controller
     {
         parent::__construct();
         $this->load->model('model_lapvis');
-
         check_not_login();
+
     }
 
     function filter_lapvis()

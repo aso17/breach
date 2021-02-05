@@ -76,6 +76,16 @@ class Model_karyawan extends CI_Model
         return $this->db->get_where($this->_table, ["nik_karyawan" => $id])->row();
     }
 
+    public function getbyid_join($nik)
+    {
+        $this->db->select('*');
+        $this->db->from($this->_table);
+        $this->db->join('tb_posisi', 'tb_posisi.id_posisi=tb_karyawan.id_posisi');
+        $this->db->where('tb_karyawan.nik_karyawan', $nik);
+        $query = $this->db->get()->row();
+        return $query;
+    }
+
     public function save()
     {
         $post = $this->input->post();
@@ -99,7 +109,7 @@ class Model_karyawan extends CI_Model
         $this->j_kelamin = $post['j_kelamin'];
         $this->email = $post['email'];
         $this->telp = $post['telp'];
-        return $this->db->update($this->_table, $this, array('nik_karyawan' => $post['nik_karyawan']));
+        return $this->db->update($this->_table, $this, array('nik_karyawan' => $post['nik']));
     }
 
     public function delete($id)

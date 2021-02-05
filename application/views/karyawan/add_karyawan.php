@@ -48,11 +48,11 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="id_posisi">Bagian</label>
+                                    <label for="id_posisi">Level</label>
                                     <select name="id_posisi" id="id_posisi"
                                         class="form-control custom-form <?= form_error('id_posisi') ? 'is-invalid' : '' ?>"
                                         name="id_posisi">
-                                        <option selected hidden value="">-- Pilih Bagian --</option>
+                                        <option selected hidden value="">-- level Karyawan --</option>
                                         <?php foreach ($id_posisi as $dt) { ?>
                                         <option value="<?= $dt->id_posisi ?>"
                                             <?= set_value('id_posisi') == "<?= $dt->id_posisi ?>" ? "selected" : '' ?>

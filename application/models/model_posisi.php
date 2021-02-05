@@ -45,7 +45,7 @@ class Model_posisi extends CI_Model
     {
         $post = $this->input->post();
         $this->id_posisi = $post['id_posisi'];
-        $this->bagian = $post['bagian'];
+        $this->level = $post['level'];
         return $this->db->insert($this->_table, $this);
     }
 

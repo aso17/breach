@@ -65,6 +65,17 @@ class User_model extends CI_Model
     {
         return $this->db->get_where($this->_table, ["nik_karyawan" => $nik])->row();
     }
+    public function getby_username($user)
+    {
+        $this->db->select('*');
+        $this->db->from($this->_table);
+        $this->db->join('tb_karyawan', 'tb_karyawan.nik_karyawan=tb_user.nik_karyawan');
+        $this->db->join('tb_posisi', 'tb_posisi.id_posisi=tb_karyawan.id_posisi');
+        $this->db->where('username', $user);
+        $query = $this->db->get()->row();
+        return $query;
+    }
+
 
     public function save($post)
     {
@@ -75,7 +86,6 @@ class User_model extends CI_Model
         $this->password = password_hash($post['password'], PASSWORD_BCRYPT);
         return $this->db->insert($this->_table, $this);
     }
-
     public function update($post, $id)
     {
         $data = [
@@ -83,9 +93,7 @@ class User_model extends CI_Model
             "username" => $post['username']
 
         ];
-        // $this->id_user = uniqid('user');
-        // $this->nik_karyawan = $post['nik'];
-        // $this->username = $post['username'];
+
         $this->db->set($data);
         $this->db->where('id_user', $id);
         $this->db->update('tb_user', $data);

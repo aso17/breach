@@ -70,3 +70,5 @@
     </section>
     <!-- /.content -->
 </div>
+</div>
+</div>
