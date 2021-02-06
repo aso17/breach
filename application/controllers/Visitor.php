@@ -29,10 +29,17 @@ class Visitor extends CI_Controller
 			$this->template->load('shared/index', 'visitor/add_visitor');
 		} else {
 			$post = $this->input->post(null, TRUE);
-			$this->model_visitor->save($post);
-			if ($this->db->affected_rows() > 0) {
-				$this->session->set_flashdata('success', 'Visitor Berhasil Ditambahkan!');
-				redirect('visitor', 'refresh');
+			$id_visit = $this->input->post('no_visit');
+			$visitor = $this->model_visitor->getById($id_visit);
+			if ($visitor == false) {
+				$this->model_visitor->save($post);
+				if ($this->db->affected_rows() > 0) {
+					$this->session->set_flashdata('success', 'Visitor Berhasil Ditambahkan!');
+					redirect('visitor', 'refresh');
+				}
+			} else {
+				$this->session->set_flashdata('warning', 'nomer visitor tidak boleh sama!');
+				redirect('visitor/add', 'refresh');
 			}
 		}
 	}

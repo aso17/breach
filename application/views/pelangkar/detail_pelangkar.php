@@ -51,7 +51,7 @@
                                 class="icon text-white-10">
                                 <i class="fas fa-arrow-circle-left"></i></span>
                             <span class="font-weight-bold text">Kembali</span></a>
-                        <?php if ($this->session->userdata('level') == "DH Irga") : ?>
+                        <?php if ($this->session->userdata('level') == "DH IRGA") : ?>
                         <?php if ($pelangkar->status != 'close') : ?>
                         <a href="<?php echo base_url('pelangkar/status_close/' . $pelangkar->id_pelanggaran) ?>"
                             class="btn btn-success btn-icon-split btn-sm float-right" style="margin-right: 5px;"><span

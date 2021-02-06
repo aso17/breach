@@ -62,7 +62,7 @@ class Pelangvis extends CI_Controller
 			}
 
 			$post = $this->input->post(null, TRUE);
-			$this->model_pelanggaran->save($post);
+			$this->model_pelanggaran->save($post, $id);
 			$this->model_pelangvis->save($post, $id);
 
 			$this->session->set_flashdata('success', 'Data Berhasil Ditambahkan!');

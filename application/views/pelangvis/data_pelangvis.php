@@ -3,7 +3,7 @@
     <!-- Card Header - Dropdown -->
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">DATA PELANGGARAN VISITOR</h6>
-        <?php if ($this->session->userdata('level') == "Admin") : ?>
+        <?php if ($this->session->userdata('level') == "Admin" and "Security") : ?>
         <div class="card-header">
             <a href="<?php echo base_url('pelangvis/add') ?>" class="btn btn-primary btn-icon-split btn-sm"
                 style="margin-bottom: 5px;">
@@ -79,7 +79,7 @@
                             <a
                                 class="text-center"><?php echo anchor('pelangvis/detail/' . $visit->id_pelanggaran, '<div class="btn btn-warning btn-sm" style="margin-bottom: 5px;"><i class="fas fa-search-plus"></i></div>') ?></a>
 
-                            <?php if ($this->session->userdata('level') == "Admin") : ?>
+                            <?php if ($this->session->userdata('level') == "Admin") { ?>
                             <a
                                 class="text-center"><?php echo anchor('pelangvis/edit/' . $visit->id_pelanggaran, '<div class="btn btn-success btn-sm" style="margin-bottom: 5px;"><i class="fas fa-edit"></i></div>') ?></a>
                             <a onclick="deleteConfirm('<?= base_url('pelangvis/delete/' . $visit->id_pelanggaran) ?>')"
@@ -88,7 +88,18 @@
                                 <span class="icon text-white-5">
                                     <i class="fas fa-trash"></i>
                                 </span></a>
-                            <?php endif ?>
+                            <?php } else { ?>
+                            <?php if ($this->session->userdata('level') == "Security") { ?>
+                            <a
+                                class="text-center"><?php echo anchor('pelangvis/edit/' . $visit->id_pelanggaran, '<div class="btn btn-success btn-sm" style="margin-bottom: 5px;"><i class="fas fa-edit"></i></div>') ?></a>
+                            <a onclick="deleteConfirm('<?= base_url('pelangvis/delete/' . $visit->id_pelanggaran) ?>')"
+                                href="#!" style="margin-bottom: 5px;" class="btn btn-danger btn-sm btn-icon-split"
+                                data-toggle="tooltip" data-placement="top" title="Delete">
+                                <span class="icon text-white-5">
+                                    <i class="fas fa-trash"></i>
+                                </span></a>
+                            <?php } ?>
+                            <?php } ?>
                         </td>
 
                     </tr>

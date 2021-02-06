@@ -26,15 +26,23 @@ class Karyawan extends CI_Controller
 		$karyawan = $this->model_karyawan;
 		$validation = $this->form_validation;
 		$validation->set_rules($karyawan->rules());
-		if ($this->form_validation->run() == FALSE) {
+		if ($this->form_validation->run() == false) {
 			$data['id_posisi'] = $this->model_posisi->getAll();
 			$this->template->load('shared/index', 'karyawan/add_karyawan', $data);
 		} else {
 			$post = $this->input->post(null, TRUE);
-			$this->model_karyawan->save($post);
-			if ($this->db->affected_rows() > 0) {
-				$this->session->set_flashdata('success', 'karyawan Berhasil Ditambahkan!');
-				redirect('karyawan', 'refresh');
+			$nik = $this->input->post('nik_karyawan');
+			$karyawan = $this->model_karyawan->getbyid_join($nik);
+			if ($karyawan == false) {
+				$this->model_karyawan->save($post);
+				if ($this->db->affected_rows() > 0) {
+					$this->session->set_flashdata('success', 'karyawan Berhasil Ditambahkan!');
+					redirect('karyawan', 'refresh');
+				}
+			} else {
+
+				$this->session->set_flashdata('warning', 'Nik tidak  boleh sama!');
+				redirect('karyawan/add', 'refresh');
 			}
 		}
 	}

@@ -58,7 +58,7 @@ class Pelangkar extends CI_Controller
 			}
 
 			$post = $this->input->post(null, TRUE);
-			$this->model_pelanggaran->save($post);
+			$this->model_pelanggaran->save($post, $id);
 			$this->model_pelangkar->save($post, $id);
 			$this->session->set_flashdata('success', 'berhasil di tambahkan ');
 			redirect('pelangkar', 'refresh');

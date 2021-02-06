@@ -16,15 +16,7 @@
                         <!-- form start -->
                         <form method="post" action="">
                             <div class="card-body">
-                                <div class="form-group">
-                                    <label for="id_posisi">ID Posisi</label>
-                                    <input type="text"
-                                        class="form-control <?php echo form_error('id_posisi') ? 'is-invalid' : '' ?>"
-                                        id="id_posisi" name="id_posisi">
-                                    <div class="invalid-feedback">
-                                        <?php echo form_error('id_posisi') ?>
-                                    </div>
-                                </div>
+
                                 <div class="form-group">
                                     <label for="level">level</label>
                                     <input type="text"

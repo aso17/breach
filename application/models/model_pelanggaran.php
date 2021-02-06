@@ -13,7 +13,7 @@ class model_pelanggaran extends CI_Model
         $this->db->order_by($id_pelanggaran, $oder);
         return $this->db->get($tb_pelanggaran);
     }
-    public function save($post)
+    public function save($post, $id)
     {
         $post = $this->input->post();
 
@@ -31,6 +31,7 @@ class model_pelanggaran extends CI_Model
             }
         }
 
+        $this->id_pelanggaran = $id;
         $this->id_kategori = $post['kategori'];
         $this->keterangan = $post['ket_pelanggaran'];
         $this->waktu = $post['waktu'];

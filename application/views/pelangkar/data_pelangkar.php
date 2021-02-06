@@ -3,7 +3,7 @@
       <!-- Card Header - Dropdown -->
       <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
           <h6 class="m-0 font-weight-bold text-primary ">DATA PELANGGARAN KARYAWAN</h6>
-          <?php if ($this->session->userdata('level') == "Admin") :
+          <?php if ($this->session->userdata('level') == "Admin") {
             ?>
           <div class="card-header">
               <a href="<?php echo base_url('pelangkar/add') ?>" class="btn btn-primary btn-icon-split btn-sm"
@@ -13,8 +13,21 @@
                   </span>
                   <span class="font-weight-bold text">Tambah</span></a>
           </div>
-          <?php endif
+          <?php } else {;
             ?>
+          <?php if ($this->session->userdata('level') == "Security") {
+                ?>
+          <div class="card-header">
+              <a href="<?php echo base_url('pelangkar/add') ?>" class="btn btn-primary btn-icon-split btn-sm"
+                  style="margin-bottom: 5px;">
+                  <span class="icon text-white-10">
+                      <i class="fas fa-plus"></i>
+                  </span>
+                  <span class="font-weight-bold text">Tambah</span></a>
+          </div>
+
+          <?php } ?>
+          <?php } ?>
       </div>
       <div class="card-body">
           <div class="table-responsive">
@@ -80,7 +93,7 @@
                               <a
                                   class="text-center"><?php echo anchor('pelangkar/detail/' . $kar->id_pelanggaran, '<span class="btn btn-warning btn-sm" style="margin-bottom: 5px;"><i class="fas fa-search-plus"></i></div>') ?></a>
 
-                              <?php if ($this->session->userdata('level') == "Admin") : ?>
+                              <?php if ($this->session->userdata('level') == "Admin") { ?>
                               <a
                                   class="text-center"><?php echo anchor('pelangkar/edit/' . $kar->id_pelanggaran, '<div class="btn btn-success btn-sm" style="margin-bottom: 5px;"><i class="fas fa-edit"></i></div>') ?></a>
                               <a onclick="deleteConfirm('<?= base_url('pelangkar/delete/' . $kar->id_pelanggaran) ?>')"
@@ -89,7 +102,18 @@
                                   <span class="icon text-white-5">
                                       <i class="fas fa-trash"></i>
                                   </span></a>
-                              <?php endif ?>
+                              <?php } else { ?>
+                              <?php if ($this->session->userdata('level') == "Security") { ?>
+                              <a
+                                  class="text-center"><?php echo anchor('pelangkar/edit/' . $kar->id_pelanggaran, '<div class="btn btn-success btn-sm" style="margin-bottom: 5px;"><i class="fas fa-edit"></i></div>') ?></a>
+                              <a onclick="deleteConfirm('<?= base_url('pelangkar/delete/' . $kar->id_pelanggaran) ?>')"
+                                  href="#!" style="margin-bottom: 5px;" class="btn btn-danger btn-sm btn-icon-split"
+                                  data-toggle="tooltip" data-placement="top" title="Delete">
+                                  <span class="icon text-white-5">
+                                      <i class="fas fa-trash"></i>
+                                  </span></a>
+                              <?php } ?>
+                              <?php } ?>
                           </td>
                       </tr>
                       <?php } ?>

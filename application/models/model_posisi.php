@@ -11,11 +11,7 @@ class Model_posisi extends CI_Model
     {
         return [
 
-            [
-                'field' => 'id_posisi',
-                'label' => 'id_posisi',
-                'rules' => 'required'
-            ],
+
 
             [
                 'field' => 'level',
@@ -44,7 +40,7 @@ class Model_posisi extends CI_Model
     public function save()
     {
         $post = $this->input->post();
-        $this->id_posisi = $post['id_posisi'];
+
         $this->level = $post['level'];
         return $this->db->insert($this->_table, $this);
     }
