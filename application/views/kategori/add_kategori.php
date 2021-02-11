@@ -18,7 +18,7 @@
               <div class="card-body">
                 <div class="form-group">
                   <label for="kategori">Kategori Pelanggaran</label>
-                  <input type="text" class="form-control <?php echo form_error('kategori') ? 'is-invalid' : '' ?>" id="kategori" name="kategori" placeholder="kategori pelanggaran">
+                  <input type="text" class="form-control <?php echo form_error('kategori') ? 'is-invalid' : '' ?>" id="kategori" name="kategori">
                   <div class="invalid-feedback">
                     <?php echo form_error('kategori') ?>
                   </div>

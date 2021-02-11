@@ -28,26 +28,23 @@
                 </thead>
                 <tbody>
                     <?php
-          $no = 1;
-          foreach ($visitor as $vis) { ?>
-                    <tr>
-                        <td class="text-center"><?php echo $no++ ?></td>
-                        <td class="text-center"><?php echo $vis->id_visitor ?></td>
-                        <td class="text-center"><?php echo $vis->no_ktp ?></td>
-                        <td class="text-center"><?php echo $vis->nama_visitor ?></td>
-                        <td class="text-center"><?php echo $vis->alamat ?></td>
-                        <td class="text-center"><?php echo $vis->nama_perusahaan ?></td>
-                        <td class="text-center">
-                            <a
-                                class="text-center"><?php echo anchor('visitor/edit/' . $vis->id_visitor, '<div class="btn btn-success btn-sm" style="margin-bottom: 5px;"><i class="fas fa-edit"></i></div>') ?></a>
-                            <a onclick="deleteConfirm('<?= base_url('visitor/delete/' . $vis->id_visitor) ?>')"
-                                href="#!" style="margin-bottom: 5px;" class="btn btn-danger btn-sm btn-icon-split"
-                                data-toggle="tooltip" data-placement="top" title="Delete">
-                                <span class="icon text-white-5">
-                                    <i class="fas fa-trash"></i>
-                                </span></a>
-                        </td>
-                    </tr>
+                    $no = 1;
+                    foreach ($visitor as $vis) { ?>
+                        <tr>
+                            <td class="text-center"><?php echo $no++ ?></td>
+                            <td class="text-center"><?php echo $vis->id_visitor ?></td>
+                            <td class="text-center"><?php echo $vis->no_ktp ?></td>
+                            <td class="text-center"><?php echo $vis->nama_visitor ?></td>
+                            <td class="text-center"><?php echo $vis->alamat ?></td>
+                            <td class="text-center"><?php echo $vis->nama_perusahaan ?></td>
+                            <td class="text-center">
+                                <a class="text-center"><?php echo anchor('visitor/edit/' . $vis->id_visitor, '<div class="btn btn-primary btn-sm" style="margin-bottom: 5px;"><i class="fas fa-edit"></i></div>') ?></a>
+                                <a onclick="deleteConfirm('<?= base_url('visitor/delete/' . $vis->id_visitor) ?>')" href="#!" style="margin-bottom: 5px;" class="btn btn-danger btn-sm btn-icon-split" data-toggle="tooltip" data-placement="top" title="Delete">
+                                    <span class="icon text-white-5">
+                                        <i class="fas fa-trash"></i>
+                                    </span></a>
+                            </td>
+                        </tr>
                     <?php } ?>
                 </tbody>
             </table>

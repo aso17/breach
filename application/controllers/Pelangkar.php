@@ -60,7 +60,7 @@ class Pelangkar extends CI_Controller
 			$post = $this->input->post(null, TRUE);
 			$this->model_pelanggaran->save($post, $id);
 			$this->model_pelangkar->save($post, $id);
-			$this->session->set_flashdata('success', 'berhasil di tambahkan ');
+			$this->session->set_flashdata('success', 'Data berhasil di tambahkan ');
 			redirect('pelangkar', 'refresh');
 		}
 	}
@@ -74,10 +74,26 @@ class Pelangkar extends CI_Controller
 	public function change()
 	{
 		$post = $this->input->post(null, true);
+		// $waktu = $_POST['waktu1'];
+		// var_dump($waktu);
+		// die;
 		$this->model_pelanggaran->update($post);
+		if ($this->db->affected_rows() > 0) {
+			$this->session->set_flashdata('success', 'Data Berhasil update');
+			redirect('pelangkar', 'refresh');
+		} else {
+			$this->session->set_flashdata('warning', 'Data Tidak di update');
+			redirect('pelangkar', 'refresh');
+		}
+		$post = $this->input->post(null, true);
 		$this->model_pelangkar->update($post);
-		$this->session->set_flashdata('success', 'Data Berhasil Di update');
-		redirect('pelangkar', 'refresh');
+		if ($this->db->affected_rows() > 0) {
+			$this->session->set_flashdata('success', 'Data Berhasil update');
+			redirect('pelangkar', 'refresh');
+		} else {
+			$this->session->set_flashdata('warning', 'Data Tidak di update');
+			redirect('pelangkar', 'refresh');
+		}
 	}
 	public function delete($id)
 	{

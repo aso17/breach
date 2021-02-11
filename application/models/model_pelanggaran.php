@@ -68,16 +68,29 @@ class model_pelanggaran extends CI_Model
             $this->db->update($this->_table, $data);
         } else {
 
+            $waktu = $this->input->post('waktu1');
+            if ($waktu != null) {
+                $data = [
+                    "id_kategori" => $post['kategori'],
+                    "keterangan" => $post['ket_pelanggaran'],
+                    "waktu" => $post['waktu1'],
+                    "status" => 'open',
+                ];
+                $this->db->set($data);
+                $this->db->where('id_pelanggaran', $id);
+                $this->db->update($this->_table, $data);
+            } else {
 
-            $data = [
-                "id_kategori" => $post['kategori'],
-                "keterangan" => $post['ket_pelanggaran'],
-                "waktu" => $post['waktu'],
-                "status" => 'open',
-            ];
-            $this->db->set($data);
-            $this->db->where('id_pelanggaran', $id);
-            $this->db->update($this->_table, $data);
+                $data = [
+                    "id_kategori" => $post['kategori'],
+                    "keterangan" => $post['ket_pelanggaran'],
+                    "waktu" => $post['waktu'],
+                    "status" => 'open',
+                ];
+                $this->db->set($data);
+                $this->db->where('id_pelanggaran', $id);
+                $this->db->update($this->_table, $data);
+            }
         }
     }
     public function delete($id)
@@ -112,17 +125,29 @@ class model_pelanggaran extends CI_Model
             $this->db->where('id_pelanggaran', $id);
             $this->db->update($this->_table, $data);
         } else {
+            $waktu = $this->input->post('waktu1');
+            if ($waktu != null) {
+                $data = [
+                    "id_kategori" => $post['kategori'],
+                    "keterangan" => $post['ket_pelanggaran'],
+                    "waktu" => $post['waktu1'],
+                    "status" => 'open',
+                ];
+                $this->db->set($data);
+                $this->db->where('id_pelanggaran', $id);
+                $this->db->update($this->_table, $data);
+            } else {
 
-
-            $data = [
-                "id_kategori" => $post['kategori'],
-                "keterangan" => $post['ket_pelanggaran'],
-                "waktu" => $post['waktu'],
-                "status" => 'open',
-            ];
-            $this->db->set($data);
-            $this->db->where('id_pelanggaran', $id);
-            $this->db->update($this->_table, $data);
+                $data = [
+                    "id_kategori" => $post['kategori'],
+                    "keterangan" => $post['ket_pelanggaran'],
+                    "waktu" => $post['waktu'],
+                    "status" => 'open',
+                ];
+                $this->db->set($data);
+                $this->db->where('id_pelanggaran', $id);
+                $this->db->update($this->_table, $data);
+            }
         }
     }
 

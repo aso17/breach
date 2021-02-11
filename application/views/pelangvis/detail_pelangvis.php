@@ -8,7 +8,10 @@
             ?>
             <div class="row">
                 <div class="col-md-5">
-                    <img src="<?php echo base_url() . './assets/bukti/' . $pelangvis->bukti ?>" class="img-thumbnail">
+                    <strong>Lampiran KTP</strong><br>
+                    <img src="<?php echo base_url() . './assets/bukti/' . $pelangvis->lampiran_ktp ?>" class="img-thumbnail mt-1" style="width:80% ; height:30%"><br><br><br>
+                    <strong>Bukti Pelanggaran</strong><br>
+                    <img src="<?php echo base_url() . './assets/bukti/' . $pelangvis->bukti ?>" class="img-thumbnail mt-1" style="width:60% ; height:50%">
                 </div>
                 <div class="col-md-7">
                     <table class="table table-bordered" width="100%" cellspacing="1">
@@ -21,7 +24,7 @@
                             <td><strong> <?php echo $pelangvis->nama_visitor ?></strong></td>
                         </tr>
                         <tr>
-                            <td> id visitor </td>
+                            <td> ID visitor </td>
                             <td><?php echo $pelangvis->id_visitor ?></td>
                         </tr>
                         <tr>
@@ -38,7 +41,7 @@
                         </tr>
                         <tr>
                             <td> Tanggal </td>
-                            <td><?= date('d F Y', strtotime($pelangvis->waktu)); ?></td>
+                            <td><?= date('d/m/Y, H:i:s', strtotime($pelangvis->waktu)); ?></td>
                         </tr>
                         <tr>
                             <td> Status </td>
@@ -51,20 +54,16 @@
                         </tr>
                     </table>
                     <div>
-                        <a href="<?php echo base_url('pelangvis') ?>"
-                            class="btn btn-primary btn-icon-split btn-sm float-right" style="margin-bottom: 5px;"><span
-                                class="icon text-white-10">
+                        <a href="<?php echo base_url('pelangvis') ?>" class="btn btn-primary btn-icon-split btn-sm float-right" style="margin-bottom: 5px;"><span class="icon text-white-10">
                                 <i class="fas fa-arrow-circle-left"></i></span>
                             <span class="font-weight-bold text">Kembali</span></a>
 
                         <?php if ($this->session->userdata('level') == "DH IRGA") : ?>
-                        <?php if ($pelangvis->status != 'close') : ?>
-                        <a href="<?php echo base_url('pelangvis/status_close/' . $pelangvis->id_pelanggaran) ?>"
-                            class="btn btn-success btn-icon-split btn-sm float-right" style="margin-right: 5px;"><span
-                                class="icon text-white-5">
-                                <i class="fas fa-check-double"></i></span>
-                            <span class="font-weight-bold text">Review</span></a>
-                        <?php endif ?>
+                            <?php if ($pelangvis->status != 'close') : ?>
+                                <a href="<?php echo base_url('pelangvis/status_close/' . $pelangvis->id_pelanggaran) ?>" class="btn btn-success btn-icon-split btn-sm float-right" style="margin-right: 5px;"><span class="icon text-white-5">
+                                        <i class="fas fa-check-double"></i></span>
+                                    <span class="font-weight-bold text">Review</span></a>
+                            <?php endif ?>
                         <?php endif ?>
                     </div>
                 </div>

@@ -59,27 +59,6 @@ class Kunjungan extends CI_Controller
     public function edit($id)
     {
         if (!isset($id)) redirect('kunjungan');
-        // $kunjungan = $this->model_kunjungan;
-
-
-        // $validation = $this->form_validation;
-        // $validation->set_rules($kunjungan->rules());
-
-        // if ($this->form_validation->run()) {
-        //     $post = $this->input->post(null, TRUE);
-        //     $this->model_kunjungan->update($post);
-        //     if ($this->db->affected_rows() > 0) {
-        //         $this->session->set_flashdata('success', 'kunjungan Berhasil Diupdate!');
-        //         redirect('kunjungan', 'refresh');
-        //     } else {
-        //         $this->session->set_flashdata('warning', 'Data kunjungan Tidak Diupdate!');
-        //         redirect('kunjungan', 'refresh');
-        //     }
-        // }
-        // if (!$data['kunjungan']) {
-        //     $this->session->set_flashdata('error', 'Data Tidak Diupdate!');
-        //     redirect('kunjungan', 'refresh');
-        // }
 
         $data['kunjungan'] = $this->model_kunjungan->getById($id);
 

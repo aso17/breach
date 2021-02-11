@@ -32,11 +32,15 @@ class Model_posisi extends CI_Model
         return $query;
     }
 
+
     public function getById($id)
     {
         return $this->db->get_where($this->_table, ["id_posisi" => $id])->row();
     }
-
+    public function getbylevel($level)
+    {
+        return $this->db->get_where($this->_table, ["level" => $level])->row();
+    }
     public function save()
     {
         $post = $this->input->post();

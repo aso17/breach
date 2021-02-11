@@ -29,10 +29,17 @@ class Kategori extends CI_Controller
 			$this->template->load('shared/index', 'kategori/add_kategori');
 		} else {
 			$post = $this->input->post(null, TRUE);
-			$this->model_kategori->save($post);
-			if ($this->db->affected_rows() > 0) {
-				$this->session->set_flashdata('success', 'Kategori Pelanggaran Berhasil Ditambahkan!');
-				redirect('kategori', 'refresh');
+			$kate = $this->input->post('kategori');
+			$kategori = $this->model_kategori->getBykate($kate);
+			if ($kategori == false) {
+				$this->model_kategori->save($post);
+				if ($this->db->affected_rows() > 0) {
+					$this->session->set_flashdata('success', 'Kategori Pelanggaran Berhasil Ditambahkan!');
+					redirect('kategori', 'refresh');
+				}
+			} else {
+				$this->session->set_flashdata('warning', 'Kategori Pelanggaran tidak boleh sama!');
+				redirect('kategori/add', 'refresh');
 			}
 		}
 	}
@@ -48,10 +55,10 @@ class Kategori extends CI_Controller
 		$id = $this->input->post('id_kategori');
 		$this->model_kategori->update($id);
 		if ($this->db->affected_rows() > 0) {
-			$this->session->set_flashdata('success', 'Kategori successfully changed');
+			$this->session->set_flashdata('success', 'Kategori berhasil ditambahkan');
 			redirect('kategori', 'refresh');
 		} else {
-			$this->session->set_flashdata('warning', 'kategori failed to change!');
+			$this->session->set_flashdata('warning', 'kategori gagal ditambahkan');
 			redirect('kategori', 'refresh');
 		}
 	}

@@ -38,7 +38,7 @@ class Visitor extends CI_Controller
 					redirect('visitor', 'refresh');
 				}
 			} else {
-				$this->session->set_flashdata('warning', 'nomer visitor tidak boleh sama!');
+				$this->session->set_flashdata('warning', 'Nomor visitor sudah terdaftar!');
 				redirect('visitor/add', 'refresh');
 			}
 		}

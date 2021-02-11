@@ -6,7 +6,6 @@ function check_already_login()
     $user_session = $CI->session->userdata('id_user');
     $CI->load->model('model_pelanggaran');
     if ($user_session != null) {
-        // $CI->session->set_flashdata('error', 'Anda Sudah Login!');
         $data['vringan'] = $CI->model_pelanggaran->get_num1();
         $data['vsedang'] = $CI->model_pelanggaran->get_num2();
         $data['vberat'] = $CI->model_pelanggaran->get_num3();

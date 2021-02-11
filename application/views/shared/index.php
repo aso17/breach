@@ -63,8 +63,7 @@
             </div>
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-server"></i>
                     <span>Master</span>
                 </a>
@@ -82,22 +81,21 @@
             </li>
             <!-- <?php endif
                     ?> -->
-            <?php if ($this->session->userdata('level') == "Security") : ?>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-server"></i>
-                    <span>Master</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Menu:</h6>
+            <?php if ($this->session->userdata('level') == "Supervisor Security") : ?>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-server"></i>
+                        <span>Master</span>
+                    </a>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Menu:</h6>
 
-                        <a class="collapse-item" href="<?php echo base_url('visitor') ?>">Visitor</a>
-                        <a class="collapse-item" href="<?php echo base_url('kunjungan') ?>">Kunjungan</a>
+                            <a class="collapse-item" href="<?php echo base_url('visitor') ?>">Visitor</a>
+                            <a class="collapse-item" href="<?php echo base_url('kunjungan') ?>">Kunjungan</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
 
             <?php endif; ?>
             <!-- Divider -->
@@ -110,8 +108,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-align-justify"></i>
                     <span>Transaksi</span>
                 </a>
@@ -125,48 +122,46 @@
             </li>
 
             <?php if ($this->session->userdata('level') == "Admin") { ?>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Laporan
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu Laporan -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
-                    aria-expanded="true" aria-controls="collapseOne">
-                    <i class="fa fa-file-alt"></i>
-                    <span>Laporan Periode</span>
-                </a>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Menu:</h6>
-                        <a class="collapse-item" href="<?php echo base_url('laporan/filter') ?>">Laporan Karyawan</a>
-                        <a class="collapse-item" href="<?php echo base_url('laporan_visitor/filter_lapvis') ?>">Laporan
-                            Visitor</a>
-                    </div>
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    Laporan
                 </div>
-            </li>
-            <!-- <?php } else { ?> -->
-            <?php if ($this->session->userdata('level') == "Security") { ?>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
-                    aria-expanded="true" aria-controls="collapseOne">
-                    <i class="fa fa-file-alt"></i>
-                    <span>Laporan Periode</span>
-                </a>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Menu:</h6>
-                        <a class="collapse-item" href="<?php echo base_url('laporan/filter') ?>">Laporan Karyawan</a>
-                        <a class="collapse-item" href="<?php echo base_url('laporan_visitor/filter_lapvis') ?>">Laporan
-                            Visitor</a>
-                    </div>
-                </div>
-            </li>
 
-            <?php } ?>
+                <!-- Nav Item - Pages Collapse Menu Laporan -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <i class="fa fa-file-alt"></i>
+                        <span>Laporan Periode</span>
+                    </a>
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Menu:</h6>
+                            <a class="collapse-item" href="<?php echo base_url('laporan/filter') ?>">Laporan Karyawan</a>
+                            <a class="collapse-item" href="<?php echo base_url('laporan_visitor/filter_lapvis') ?>">Laporan
+                                Visitor</a>
+                        </div>
+                    </div>
+                </li>
+            <?php } else { ?>
+                <?php if ($this->session->userdata('level') == "Supervisor Security") { ?>
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <i class="fa fa-file-alt"></i>
+                            <span>Laporan Periode</span>
+                        </a>
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Menu:</h6>
+                                <a class="collapse-item" href="<?php echo base_url('laporan/filter') ?>">Laporan Karyawan</a>
+                                <a class="collapse-item" href="<?php echo base_url('laporan_visitor/filter_lapvis') ?>">Laporan
+                                    Visitor</a>
+                            </div>
+                        </div>
+                    </li>
+
+                <?php } ?>
             <?php } ?>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -194,8 +189,7 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <div class="input-group-append">
                             </div>
@@ -206,18 +200,14 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -229,14 +219,11 @@
                         </li>
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span
-                                    class="font-weight-bold d-none d-lg-inline text-primary large"><?= $this->session->userdata('nama_lengkap') ?></span>
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="font-weight-bold d-none d-lg-inline text-primary large"><?= $this->session->userdata('nama_lengkap') ?></span>
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <?php //foreach ($user as $us) : 
                                 ?>
                                 <a class="dropdown-item" href="<?= base_url('user/edit_pass')  ?>">
@@ -348,23 +335,23 @@
             <script src="<?php echo base_url('assets/toastr/toastr.min.js') ?>"></script>
 
             <script type="text/javascript">
-            toastr.options = {
-                "closeButton": false,
-                "debug": false,
-                "newestOnTop": false,
-                "progressBar": false,
-                "positionClass": "toast-top-right",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "5000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-            }
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
             </script>
 
             <!-- Page level custom scripts -->
@@ -374,41 +361,41 @@
             <script src="<?php echo base_url('js/sb-admin-2.min.js') ?>"></script>
 
             <script type="text/javascript">
-            $(document).ready(function() {
-                $('#tabel').DataTable({
-                    "bPaginate": false,
-                    "bLengthChange": false,
-                    "bFilter": true,
-                    "bAutowidth": false
+                $(document).ready(function() {
+                    $('#tabel').DataTable({
+                        "bPaginate": false,
+                        "bLengthChange": false,
+                        "bFilter": true,
+                        "bAutowidth": false
 
+                    });
                 });
-            });
 
-            function deleteConfirm(url) {
-                $('#btn-delete').attr('href', url);
-                $('#deleteModal').modal();
-            }
-            $(function() {
-                $("#label").DataTable();
-                $('#label2').DataTable({
-                    "paging": true,
-                    "lengthChange": false,
-                    "searching": false,
-                    "ordering": false,
-                    "info": true,
-                    "autoWidth": false,
+                function deleteConfirm(url) {
+                    $('#btn-delete').attr('href', url);
+                    $('#deleteModal').modal();
+                }
+                $(function() {
+                    $("#label").DataTable();
+                    $('#label2').DataTable({
+                        "paging": true,
+                        "lengthChange": false,
+                        "searching": false,
+                        "ordering": false,
+                        "info": true,
+                        "autoWidth": false,
+                    });
                 });
-            });
 
-            <?php if ($this->session->flashdata('success')) { ?>
-            toastr.success("<?php echo $this->session->flashdata('success'); ?>");
-            <?php } else if ($this->session->flashdata('error')) { ?>
-            toastr.error("<?php echo $this->session->flashdata('error'); ?>");
-            <?php } else if ($this->session->flashdata('warning')) { ?>
-            toastr.warning("<?php echo $this->session->flashdata('warning'); ?>");
-            <?php } else if ($this->session->flashdata('info')) { ?>
-            toastr.info("<?php echo $this->session->flashdata('info'); ?>");
-            <?php } ?>
+                <?php if ($this->session->flashdata('success')) { ?>
+                    toastr.success("<?php echo $this->session->flashdata('success'); ?>");
+                <?php } else if ($this->session->flashdata('error')) { ?>
+                    toastr.error("<?php echo $this->session->flashdata('error'); ?>");
+                <?php } else if ($this->session->flashdata('warning')) { ?>
+                    toastr.warning("<?php echo $this->session->flashdata('warning'); ?>");
+                <?php } else if ($this->session->flashdata('info')) { ?>
+                    toastr.info("<?php echo $this->session->flashdata('info'); ?>");
+                <?php } ?>
             </script>
 
 </body>

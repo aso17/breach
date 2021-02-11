@@ -25,12 +25,11 @@ class auth extends CI_Controller
             $this->load->view('auth/login');
             $this->load->view('templates/auth_footer');
         } else {
-            // Validasi Success
+
             $post = $this->input->post();
             $username = $post['username'];
             $user = $this->model_auth->cek_login($username);
-            // var_dump($user);
-            // die;
+
 
             if ($user != null) {
                 $post = $this->input->post();

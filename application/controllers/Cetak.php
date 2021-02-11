@@ -13,7 +13,7 @@ class Cetak extends CI_Controller
     }
     public function pdf($tanggalawal, $tanggalakhir)
     {
-        $data['subtitle'] = "Dari tanggal :  " . date('d F Y', strtotime($tanggalawal)) . " Sampai tanggal :  " . date('d F Y', strtotime($tanggalakhir));
+        $data['subtitle'] = "Dari tanggal :  " . date('d/m/Y', strtotime($tanggalawal)) . " Sampai tanggal :  " . date('d/m/Y', strtotime($tanggalakhir));
         $data['datafilter'] = $this->model_laporan->filterBytanggal($tanggalawal, $tanggalakhir);
         $this->load->library('fungsi');
         $this->fungsi->generate('laporan/output_lapkar', $data);

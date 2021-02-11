@@ -29,10 +29,17 @@ class Posisi extends CI_Controller
             $this->template->load('shared/index', 'posisi/add_posisi');
         } else {
             $post = $this->input->post(null, TRUE);
-            $this->model_posisi->save($post);
-            if ($this->db->affected_rows() > 0) {
-                $this->session->set_flashdata('success', 'Posisi Berhasil Ditambahkan!');
-                redirect('posisi', 'refresh');
+            $level = $this->input->post('level');
+            $lev = $this->model_posisi->getBylevel($level);
+            if ($lev == false) {
+                $this->model_posisi->save($post);
+                if ($this->db->affected_rows() > 0) {
+                    $this->session->set_flashdata('success', 'Level Berhasil Ditambahkan');
+                    redirect('posisi', 'refresh');
+                }
+            } else {
+                $this->session->set_flashdata('warning', 'Level Sudah Tersedia');
+                redirect('posisi/add', 'refresh');
             }
         }
     }
@@ -49,10 +56,10 @@ class Posisi extends CI_Controller
         $this->model_posisi->update($post, $id);
         if ($this->db->affected_rows() > 0) {
 
-            $this->session->set_flashdata('success', 'level successfully changed');
+            $this->session->set_flashdata('success', 'Level Berhasil Diupdate');
             redirect('posisi', 'refresh');
         } else {
-            $this->session->set_flashdata('error', 'level failed to change');
+            $this->session->set_flashdata('error', 'Level Gagal Diupdate!');
             redirect('posisi', 'refresh');
         }
     }
@@ -60,7 +67,7 @@ class Posisi extends CI_Controller
     {
         $this->model_posisi->delete($id);
         if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('success', 'Data Posisi Berhasil Dihapus!');
+            $this->session->set_flashdata('success', 'Data Posisi Berhasil Dihapus');
             redirect('posisi', 'refresh');
         }
     }

@@ -6,49 +6,49 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <style type="text/css">
-    .line-title {
-        border: 0;
-        border-style: inset;
-        border-top: 1px solid #000;
-    }
+        .line-title {
+            border: 0;
+            border-style: inset;
+            border-top: 1px solid #000;
+        }
 
-    .table {
-        width: 100%;
-        border-spacing: 0;
-        border-collapse: collapse;
-    }
+        .table {
+            width: 100%;
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
 
-    .table tr:first-child th,
-    .table tr:first-child td {
-        border-top: 1px solid #000;
-    }
+        .table tr:first-child th,
+        .table tr:first-child td {
+            border-top: 1px solid #000;
+        }
 
-    .table tr th,
-    .table td {
-        border-left: 1px solid #000;
-    }
+        .table tr th,
+        .table td {
+            border-left: 1px solid #000;
+        }
 
-    .table tr th,
-    .table td {
-        border-right: 1px solid #000;
-        border-bottom: 1px solid #000;
-        padding: 4px;
-        vertical-align: top;
-    }
+        .table tr th,
+        .table td {
+            border-right: 1px solid #000;
+            border-bottom: 1px solid #000;
+            padding: 4px;
+            vertical-align: top;
+        }
 
-    .text-center {
-        text-align: center;
-    }
+        .text-center {
+            text-align: center;
+        }
 
-    .page1 {
-        font-size: 16px;
-        line-height: 90px;
-    }
+        .page1 {
+            font-size: 16px;
+            line-height: 80px;
+        }
 
-    .page2 {
-        font-size: 16px;
-        line-height: 130px;
-    }
+        .page2 {
+            font-size: 16px;
+            line-height: 110px;
+        }
     </style>
 </head>
 
@@ -86,7 +86,8 @@
                     <th>NIK Karyawan</th>
                     <th>Nama Karyawan</th>
                     <th>Departemen</th>
-                    <th>Kategori Pelanggaran</th>
+                    <th>Level</th>
+                    <th>Kategori</th>
                     <th>Keterangan Pelanggaran</th>
                     <th>Tanggal</th>
                 </tr>
@@ -95,16 +96,17 @@
                 <?php
                 $no = 1;
                 foreach ($datafilter as $kar) : ?>
-                <tr>
-                    <td><?php echo $no++ ?></td>
-                    <td><?php echo $kar->nik_karyawan ?></td>
-                    <td><?php echo $kar->nama_lengkap ?></td>
-                    <td><?php echo $kar->departemen ?></td>
-                    <td><?php echo $kar->kategori ?></td>
-                    <td><?php echo $kar->keterangan ?></td>
-                    <td><?= date('d-m-Y', strtotime($kar->waktu)); ?></td>
-                    </td>
-                </tr>
+                    <tr>
+                        <td class="text-center"><?php echo $no++ ?></td>
+                        <td class="text-center"><?php echo $kar->nik_karyawan ?></td>
+                        <td class="text-center"><?php echo $kar->nama_lengkap ?></td>
+                        <td class="text-center"><?php echo $kar->departemen ?></td>
+                        <td class="text-center"><?php echo $kar->level ?></td>
+                        <td class="text-center"><?php echo $kar->kategori ?></td>
+                        <td class="text-center"><?php echo $kar->keterangan ?></td>
+                        <td class="text-center"><?= date('d/m/Y', strtotime($kar->waktu)); ?></td>
+                        </td>
+                    </tr>
                 <?php endforeach ?>
             </tbody>
         </table>

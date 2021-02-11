@@ -30,6 +30,10 @@ class Model_kategori extends CI_Model
     {
         return $this->db->get_where($this->_table, ["id_kategori" => $id])->row();
     }
+    public function getBykate($id)
+    {
+        return $this->db->get_where($this->_table, ["kategori" => $id])->row();
+    }
 
     public function save()
     {

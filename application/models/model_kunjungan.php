@@ -129,15 +129,6 @@ class Model_kunjungan extends CI_Model
         $this->db->set($data);
         $this->db->where('id_kunjungan', $id);
         $this->db->update($this->_table, $data);
-
-        // $this->id_kunjungan = $post['id_kunjungan'];
-        // $this->no_kendaraan = $post['no_kendaraan'];
-        // $this->betemu = $post['bertemu'];
-        // $this->kepentingan = $post['kepentingan'];
-        // $this->jam_masuk = $post['jam_masuk'];
-
-        // return $this->db->update($this->_table, $this, array('id_kunjungan' => $post['id_kunjungan']));
-
     }
 
     public function delete($id)

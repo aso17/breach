@@ -81,6 +81,14 @@ class Pelangvis extends CI_Controller
 	{
 		$post = $this->input->post(null, TRUE);
 		$this->model_pelanggaran->update_vis($post);
+		if ($this->db->affected_rows() > 0) {
+			$this->session->set_flashdata('success', 'Data Berhasil Diupdate!');
+			redirect('pelangvis', 'refresh');
+		} else {
+			$this->session->set_flashdata('warning', 'Data Tidak Diupdate!');
+			redirect('pelangvis', 'refresh');
+		}
+		$post = $this->input->post(null, TRUE);
 		$this->model_pelangvis->update($post);
 		if ($this->db->affected_rows() > 0) {
 			$this->session->set_flashdata('success', 'Data Berhasil Diupdate!');

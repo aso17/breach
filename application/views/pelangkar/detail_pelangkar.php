@@ -24,6 +24,10 @@
                             <td><?php echo $pelangkar->departemen ?></td>
                         </tr>
                         <tr>
+                            <td> Level </td>
+                            <td><?php echo $pelangkar->level ?></td>
+                        </tr>
+                        <tr>
                             <td> Kategori Pelanggaran </td>
                             <td><?php echo $pelangkar->kategori ?></td>
                         </tr>
@@ -32,8 +36,16 @@
                             <td><?php echo $pelangkar->keterangan ?></td>
                         </tr>
                         <tr>
+                            <td> Nomor Telepon </td>
+                            <td><?php echo $pelangkar->telp ?></td>
+                        </tr>
+                        <tr>
+                            <td> Email </td>
+                            <td><?php echo $pelangkar->email ?></td>
+                        </tr>
+                        <tr>
                             <td> Tanggal </td>
-                            <td><?= $pelangkar->waktu; ?></td>
+                            <td><?= date('d/m/Y, H:i:s', strtotime($pelangkar->waktu)); ?></td>
                         </tr>
                         <tr>
                             <td> Status </td>
@@ -46,19 +58,15 @@
                         </tr>
                     </table>
                     <div>
-                        <a href="<?php echo base_url('pelangkar') ?>"
-                            class="btn btn-primary btn-icon-split btn-sm float-right" style="margin-bottom: 5px;"><span
-                                class="icon text-white-10">
+                        <a href="<?php echo base_url('pelangkar') ?>" class="btn btn-primary btn-icon-split btn-sm float-right" style="margin-bottom: 5px;"><span class="icon text-white-10">
                                 <i class="fas fa-arrow-circle-left"></i></span>
                             <span class="font-weight-bold text">Kembali</span></a>
                         <?php if ($this->session->userdata('level') == "DH IRGA") : ?>
-                        <?php if ($pelangkar->status != 'close') : ?>
-                        <a href="<?php echo base_url('pelangkar/status_close/' . $pelangkar->id_pelanggaran) ?>"
-                            class="btn btn-success btn-icon-split btn-sm float-right" style="margin-right: 5px;"><span
-                                class="icon text-white-5">
-                                <i class="fas fa-check-double"></i></span>
-                            <span class="font-weight-bold text">Review</span></a>
-                        <?php endif ?>
+                            <?php if ($pelangkar->status != 'close') : ?>
+                                <a href="<?php echo base_url('pelangkar/status_close/' . $pelangkar->id_pelanggaran) ?>" class="btn btn-success btn-icon-split btn-sm float-right" style="margin-right: 5px;"><span class="icon text-white-5">
+                                        <i class="fas fa-check-double"></i></span>
+                                    <span class="font-weight-bold text">Review</span></a>
+                            <?php endif ?>
                         <?php endif ?>
                     </div>
                 </div>

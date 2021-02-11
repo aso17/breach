@@ -2,7 +2,7 @@
 <div class="card shadow mb-4">
     <!-- Card Header - Dropdown -->
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <h6 class="m-0 font-weight-bold text-primary">Daftar Kunjungan</h6>
+        <h6 class="m-0 font-weight-bold text-primary">DATA KUNJUNGAN</h6>
         <a href="<?php echo base_url('kunjungan/add') ?>" class="btn btn-primary btn-icon-split">
             <span class="icon text-white-50">
                 <i class="fas fa-plus"></i>
@@ -33,37 +33,32 @@
                 <tbody>
                     <?php $i = 1; ?>
                     <?php foreach ($kunjungan as $kun) : ?>
-                    <tr>
-                        <td class="text-center"><?php echo $i++ ?></td>
-                        <td class="text-center"><?php echo $kun->no_ktp ?></td>
-                        <td class="text-center"><?php echo $kun->id_visitor ?></td>
-                        <td class="text-center"><?php echo $kun->nama_visitor ?></td>
-                        <td class="text-center"><?php echo $kun->alamat ?></td>
-                        <td class="text-center"><?php echo $kun->nama_perusahaan ?></td>
-                        <td class="text-center"><?php echo $kun->no_kendaraan ?></td>
-                        <td class="text-center"><?php echo $kun->bertemu ?></td>
-                        <td class="text-center"><?php echo $kun->jam_masuk ?></td>
-                        <?php if ($kun->jam_keluar == true) { ?>
-                        <td class="text-center"><?php echo $kun->jam_keluar ?></td>
-                        <?php } else { ?>
-                        <td class="text-center"> <button id="exitmodal" data-toggle="modal" data-target="#modal-exit"
-                                data-idkun="<?= $kun->id_kunjungan ?>" class=" btn btn-light btn-sm btn-sm "><i
-                                    class=" fas fa-sign-out-alt text-danger"></i>
-                                kunjungan
-                                exit</button>
-                        </td>
-                        <?php } ?>
-                        <td class=" text-center">
-                            <a
-                                class="text-center"><?php echo anchor('kunjungan/edit/' . $kun->id_kunjungan, '<div class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></div>') ?></a>
-                            <a onclick="deleteConfirm('<?= base_url('kunjungan/delete/'  . $kun->id_kunjungan) ?>')"
-                                href="#!" style="margin-bottom: 5px;" class="btn btn-danger btn-sm btn-icon-split"
-                                data-toggle="tooltip" data-placement="top" title="Delete">
-                                <span class="icon text-white-5">
-                                    <i class="fas fa-trash"></i>
-                                </span></a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td class="text-center"><?php echo $i++ ?></td>
+                            <td class="text-center"><?php echo $kun->no_ktp ?></td>
+                            <td class="text-center"><?php echo $kun->id_visitor ?></td>
+                            <td class="text-center"><?php echo $kun->nama_visitor ?></td>
+                            <td class="text-center"><?php echo $kun->alamat ?></td>
+                            <td class="text-center"><?php echo $kun->nama_perusahaan ?></td>
+                            <td class="text-center"><?php echo $kun->no_kendaraan ?></td>
+                            <td class="text-center"><?php echo $kun->bertemu ?></td>
+                            <td class="text-center"><?= date('d-m-Y, H:i:s', strtotime($kun->jam_masuk)); ?></td>
+                            <?php if ($kun->jam_keluar == true) { ?>
+                                <td class="text-center"><?= date('d-m-Y, H:i:s', strtotime($kun->jam_keluar)); ?></td>
+                            <?php } else { ?>
+                                <td class="text-center"> <button id="exitmodal" data-toggle="modal" data-target="#modal-exit" data-idkun="<?= $kun->id_kunjungan ?>" class=" btn btn-light btn-sm btn-sm "><i class=" fas fa-sign-out-alt text-danger"></i>
+                                        kunjungan
+                                        exit</button>
+                                </td>
+                            <?php } ?>
+                            <td class=" text-center">
+                                <a class="text-center"><?php echo anchor('kunjungan/edit/' . $kun->id_kunjungan, '<div class="btn btn-primary btn-sm" style="margin-bottom: 5px;"><i class="fas fa-edit"></i></div>') ?></a>
+                                <a onclick="deleteConfirm('<?= base_url('kunjungan/delete/'  . $kun->id_kunjungan) ?>')" href="#!" style="margin-bottom: 5px;" class="btn btn-danger btn-sm btn-icon-split" data-toggle="tooltip" data-placement="top" title="Delete">
+                                    <span class="icon text-white-5">
+                                        <i class="fas fa-trash"></i>
+                                    </span></a>
+                            </td>
+                        </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
@@ -74,8 +69,7 @@
 
 </div>
 <!-- /.container-fluid -->
-<div class="modal fade" id="modal-exit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="modal-exit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary text-light">
@@ -102,11 +96,11 @@
     </div>
 </div>
 <script>
-$(document).ready(function() {
-    $(document).on('click', '#exitmodal', function() {
-        const id = $(this).data('idkun');
-        $('#id_kunjungan').val(id);
+    $(document).ready(function() {
+        $(document).on('click', '#exitmodal', function() {
+            const id = $(this).data('idkun');
+            $('#id_kunjungan').val(id);
 
+        })
     })
-})
 </script>

@@ -41,7 +41,7 @@ class Karyawan extends CI_Controller
 				}
 			} else {
 
-				$this->session->set_flashdata('warning', 'Nik tidak  boleh sama!');
+				$this->session->set_flashdata('warning', 'Nik karyawan sudah terdaftar!');
 				redirect('karyawan/add', 'refresh');
 			}
 		}
