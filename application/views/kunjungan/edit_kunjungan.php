@@ -80,13 +80,24 @@
                                         <?php echo form_error('kepentingan') ?>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="jam_masuk">Jam Masuk</label>
-                                    <input type="Datetime-local"
-                                        class="form-control <?php echo form_error('jam_masuk') ? 'is-invalid' : '' ?>"
-                                        id="jam_masuk" name="jam_masuk" value="<?= $kunjungan->jam_masuk ?>">
-                                    <div class="invalid-feedback">
-                                        <?php echo form_error('jam_masuk') ?>
+                                <div class="row">
+                                    <div class="col-md-6">
+
+                                        <div class="form-group">
+                                            <label for="jam_masuk">Jam Masuk</label>
+                                            <input type="text" class="form-control" id="jam_masuk" name="jam_masuk"
+                                                value="<?= $kunjungan->jam_masuk ?>" readonly>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div class="form-group">
+                                            <label for="jam_masuk1"> Ubah Jam Masuk</label>
+                                            <input type="Datetime-local" class="form-control" id="jam_masuk1"
+                                                name="jam_masuk1">
+
+                                        </div>
                                     </div>
                                 </div>
 
@@ -102,7 +113,7 @@
                                 <button type="submit" class="btn btn-success btn-icon-split btn-sm float-right"
                                     style="margin-right: 5px;"><span class="icon text-white-5">
                                         <i class="fas fa-save"></i></span>
-                                    <span class="font-weight-bold text">Simpan</span></a></button>
+                                    <span class="font-weight-bold text">Update</span></a></button>
                             </div>
                         </form>
                     </div>

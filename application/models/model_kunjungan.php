@@ -119,16 +119,30 @@ class Model_kunjungan extends CI_Model
     public function update($id)
     {
         $post = $this->input->post();
-        $data = [
-            "id_visitor" => $post['novisit'],
-            "no_kendaraan" => $post['no_kendaraan'],
-            "bertemu" => $post['bertemu'],
-            "kepentingan" => $post['kepentingan'],
-            "jam_masuk" => $post['jam_masuk']
-        ];
-        $this->db->set($data);
-        $this->db->where('id_kunjungan', $id);
-        $this->db->update($this->_table, $data);
+        if ($this->input->post('jam_masuk1') == null) {
+
+            $data = [
+                "id_visitor" => $post['novisit'],
+                "no_kendaraan" => $post['no_kendaraan'],
+                "bertemu" => $post['bertemu'],
+                "kepentingan" => $post['kepentingan'],
+                "jam_masuk" => $post['jam_masuk']
+            ];
+            $this->db->set($data);
+            $this->db->where('id_kunjungan', $id);
+            $this->db->update($this->_table, $data);
+        } else {
+            $data = [
+                "id_visitor" => $post['novisit'],
+                "no_kendaraan" => $post['no_kendaraan'],
+                "bertemu" => $post['bertemu'],
+                "kepentingan" => $post['kepentingan'],
+                "jam_masuk" => $post['jam_masuk1']
+            ];
+            $this->db->set($data);
+            $this->db->where('id_kunjungan', $id);
+            $this->db->update($this->_table, $data);
+        }
     }
 
     public function delete($id)
